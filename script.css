@@ -1,0 +1,65 @@
+@charset "utf-8";
+#btn-green {
+	padding:5px 398px;
+background-color:#0F0;
+color:#F33;	
+}
+#div-green {
+        border-style:solid;
+	background-color:#0F6;
+	width:826px;
+	height:495px;
+	top:0px;
+	left:0px;
+	position:fixed;
+	z-index:2;	
+}
+#div-text {
+	border-style:solid;
+	background-color:#0F6;
+	width:433px;
+	height:1080px;
+	top:0px;
+	left:830px;
+	position:absolute;
+	z-index:1;	
+}
+#div-cmt {
+	border-style:solid;
+	background-color:#0F6;
+	width:827px;
+	height:580px;
+	top:500px;
+	left:0px;
+	position:absolute;
+	z-index:1;	
+}
+.greenbtn {
+	padding:10px 30px;
+	background-color:#30F;
+	color:#FFF;
+	font-size:20px;
+	}
+#dat {
+	background-color:#0C0;
+	width:20000px;
+	height:10000px;
+	top:0px;
+	left:0px;
+	border:solid;
+	border-color:#666;
+	border-width:100px;
+	position:absolute;
+	}
+#player {
+	background-color:#EAA515;
+	width:50px;
+	height:50px;
+	top:500px;
+    left:450px;
+	position:fixed;
+	border:solid;
+	border-color:#603;
+	border-style:10px;
+	border-radius:50px;
+	}
