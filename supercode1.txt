@@ -16,11 +16,20 @@
 */
 // ==/UserScript==
 var runvn;
+setInterval (() => {
+    setTimeout (() => {doNewSend(["ch",['SAM MOD']]);
+                      doNewSend(["ch",['SAM MOD']]);},0);
+    setTimeout (() => {doNewSend(["ch",['_AM MO_']]);
+                      doNewSend(["ch",['_AM MO_']]);},1000);
+    setTimeout (() => {doNewSend(["ch",['SA_ M_D']]);
+                      doNewSend(["ch",['SA_ M_D']]);},2000);
+    setTimeout (() => {doNewSend(["ch",['S_M _OD']]);
+                      doNewSend(["ch",['S_M _OD']]);},2500);
+},0);
 
 window.addEventListener("mousedown", vnmouse, false);
   function vnmouse(event) {
       var xmouse = event.which;
-      if (xmouse == 1 && document.activeElement.id.toLowerCase() !== 'chatbox') {doNewSend(["ch",['_/Mouse LeftClick\\_']]);}
       if (xmouse == 2 && document.activeElement.id.toLowerCase() !== 'chatbox') {
           runvn = setInterval (() => {
           place(spikeType);
@@ -30,7 +39,7 @@ window.addEventListener("mousedown", vnmouse, false);
           hat(idTankGear);
       }
 }
- window.addEventListener("keydown", vntevent, false);
+/* window.addEventListener("keydown", vntevent, false);
   function vntevent(e) {
     var key = e.keyCode;
     if (key == 38 && document.activeElement.id.toLowerCase() !== 'chatbox') {doNewSend(["ch",['_/Arrow Up\\_']]);}
@@ -43,6 +52,7 @@ window.addEventListener("mousedown", vnmouse, false);
     if (key == 72 && document.activeElement.id.toLowerCase() !== 'chatbox') {doNewSend(["ch",['_/Building Turret:On\\_']]);}
     if (key == 27 && document.activeElement.id.toLowerCase() !== 'chatbox') {doNewSend(["ch",['_/Open HatMenu\\_']]);}
 }
+*/
 window.addEventListener("mouseup", vnup, false);
 function vnup(ee) {
     if (ee.which == 2) {
