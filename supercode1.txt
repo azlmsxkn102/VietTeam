@@ -48,7 +48,7 @@ if(changelook == true){
 $("#mapDisplay").css({background: `url('')`});
 }
 $('#ageBarContainer')['append']('<div style=\"width: 100%;position: absolute;top: 100px;text-align: center;color: red;font-size: 12px;\">\x0aPress 0 to instaKill - Press 1 to building Trap - Press 4 to Anti InstaKill Beta - (in age 9) press HOME to get katana + musket - n to building windmill - h to building turrets - rightClick = TankGear\x0a</div>')
-document.getElementById("gameName").innerHTML = "Sam Mod Beta 0.5";
+document.getElementById("gameName").innerHTML = "Noob Hack :)";
 $('#gameName').css({'color': '#AE0000',
                     'text-shadow': '0 1px 0 rgba(255, 255, 255, 0), 0 2px 0 rgba(255, 255, 255, 0), 0 3px 0 rgba(255, 255, 255, 0), 0 4px 0 rgba(255, 255, 255, 0), 0 5px 0 rgba(255, 255, 255, 0), 0 6px 0 rgba(255, 255, 255, 0), 0 7px 0 rgba(255, 255, 255, 0), 0 8px 0 rgba(255, 255, 255, 0), 0 9px 0 rgba(255, 255, 255, 0)',
                     'text-align': 'center',
@@ -68,7 +68,7 @@ document.getElementById("allianceButton").style.color = "red";
 document.getElementById("chatButton").style.color = "red";
 document.getElementById("storeButton").style.color = "red";
 document.getElementById("leaderboard").append('~V-0.4~');
-document.getElementById('loadingText').innerHTML = "Beta in my team not share";
+document.getElementById('loadingText').innerHTML = "0.4";
 document.getElementById("loadingText").style.color = "red";
 let _1536E = false;
 //https://i.imgur.com/fgFsQJp.png
@@ -569,7 +569,7 @@ document.addEventListener('keydown', (e)=>{
     }
 if(e.keyCode == 96 && document.activeElement.id.toLowerCase() !== 'chatbox') {
         autoaim = true;
-         doNewSend(["ch", ['']]);
+         doNewSend(["ch", ['~~~~~~RELOAD~~~~~~']]);
         doNewSend(["5", [primary, true]]);
         doNewSend(["13c", [0, 7, 0]]);
         doNewSend(["13c",[0,11,0]]);
