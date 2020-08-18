@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        beta
+// @name        beta edit
 // @namespace    -
 // @version     0.5
 // @description yes
@@ -16,7 +16,6 @@
 */
 // ==/UserScript==
 var runvn;
-var runbvn;
 
 window.addEventListener("mousedown", vnmouse, false);
   function vnmouse(event) {
@@ -28,26 +27,6 @@ window.addEventListener("mousedown", vnmouse, false);
       }
       if (xmouse == 3 && document.activeElement.id.toLowerCase() !== 'chatbox') {
           hat(idTankGear);
-      }
-}
-
- window.addEventListener("keydown", vntevent, false);
-  function vntevent(e) {
-
-    if (e.keyCode == 106) {
-        runbvn = setInterval (() => {
-    setTimeout (() => {doNewSend(["ch",['SAM MOD']]);
-                      doNewSend(["ch",['SAM MOD']]);},0);
-    setTimeout (() => {doNewSend(["ch",['_AM MO_']]);
-                      doNewSend(["ch",['_AM MO_']]);},1000);
-    setTimeout (() => {doNewSend(["ch",['SA_ M_D']]);
-                      doNewSend(["ch",['SA_ M_D']]);},2000);
-    setTimeout (() => {doNewSend(["ch",['S_M _OD']]);
-                      doNewSend(["ch",['S_M _OD']]);},2500);
-},0);
-    }
-      if (e.keyCode == 61) {
-          clearInterval(runbvn);
       }
 }
 
@@ -626,7 +605,7 @@ if(e.keyCode == 96 && document.activeElement.id.toLowerCase() !== 'chatbox') {
                 doNewSend(["5", [secondary, true]]);
                                       setTimeout( () =>{
                 doNewSend(["5", [primary, true]]);
-            }, 1000)
+            }, 2000)
             }, 1000)
             autoaim = null;
         }, instaSpeed);
@@ -1625,15 +1604,4 @@ color:red;
 background-color: transparent;
 }
 `;
-    document.querySelector("body").appendChild(styles);
-    document.getElementById("adCard").remove();
-    document.getElementById("gameName").innerHTML = "VIT Hacks";
-    document.getElementById("moomooio_728x90_home").remove();
-    document.getElementById("loadingText").innerHTML = "Beta Hacks"
-    document.getElementById("promoImgHolder").remove();
     document.getElementById("pre-content-container").remove();
-    document.getElementById("chatButton").remove();
-    setInterval (() => {
-    document.getElementById("ageText").innerHTML = "VIT_HACKS";
-    },0);
-    document.getElementById("diedText").remove();
