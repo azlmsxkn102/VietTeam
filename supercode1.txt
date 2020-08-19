@@ -29,6 +29,12 @@ window.addEventListener("mousedown", vnmouse, false);
           hat(idTankGear);
       }
 }
+window.addEventListener("keydown", (e) => {
+    if (e.keyCode == 103) {
+                        doNewSend(["ch",['~~~~~~Party Exit xD~~~~~~']]);
+                        doNewSend(["9", [null]]);
+    }
+}, false);
 
 window.addEventListener("mouseup", vnup, false);
 function vnup(ee) {
@@ -1524,84 +1530,4 @@ checkbox3.addEventListener('change', function() {
         bullsoldier = false;
     }
 })
-
-document.title = "VIT Hacks";
-    var styles = document.createElement("style");
-    styles.type = "text/css";
-    styles.innerHTML = `
-.menuCard {
-background-color:black;
-left: 100%;
-position: absolute;
-}
-#setupCard {
-background-color: #74c1ed;
-left: 36%;
-position: absolute;
-top: 30%;
-}
-#rightCardHolder {
-  top: 210px;
-  position: absolute;
-  left: 36%;
-}
-#gameName {
-    position: absolute;
-    left: 20%;
-    bottom: 100px;
-    color:red;
-    text-shadow:none;
-}
-#loadingText {
-    color:red;
-}
-.actionBarItem {
-    border-style:solid;
-    border-color:red;
-    border-radius:50px;
-    background-color:red;
-    opacity:0.5;
-}
-#foodDisplay, #woodDisplay, #stoneDisplay, #scoreDisplay {
-background-color:white;
-opacity:0.5;
-}
-#storeButton, #allianceButton {
-background-color:yellow;
-border-color:red;
-border-style:solid;
-opacity:0.5;
-}
-#storeButton:hover, #allianceButton:hover {
-background-color:black;
-border-color:red;
-border-style:solid;
-opacity:0.5;
-}
-#mapDisplay {
-background-image: url("https://i.imgur.com/fgFsQJp.png");
-border-style:solid;
-border-color:red;
-}
-#topInfoHolder {
-opacity:0.2;
-color:red;
-border-color:red;
-border-style:solid;
-}
-#ageBarBody {
-background-color:red;
-}
-#killCounter {
-border-color:red;
-border-style:solid;
-color:red;
-}
-#ageText{
-color:red;
-}
-#mainMenu {
-background-color: transparent;
-}
-`;
     document.getElementById("pre-content-container").remove();
