@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        beta edit
+// @name        value
 // @namespace    -
 // @version     0.5
 // @description yes
@@ -15,8 +15,112 @@
 /*
 */
 // ==/UserScript==
+var demVN = false;
 var runvn;
+var KhocCungEm = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/745923415105470544/y2mate.com_-_Khoc_Cung_Em_Remix_-_Mr_Siro__Nhat_oan_Remix__QyhmPAZL6c4.mp3");
+var HongNhan = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/745923826944180314/y2mate.com_-_HONG_NHAN_-_JACK__TNBH_REMIX__rSI_rS2Om5Q.mp3");
+var PhuDuyen = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/745924386023931924/y2mate.com_-_PHU_DUYEN_DinhLong_Remix_-_Phat_Ho_x_JokeS_Bii_x_Sinike_Official_Music_N9Il__ljiu8.mp3");
+var ViThanGoiGio = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/745924869287575552/y2mate.com_-_Vi_Than_Goi_Gio_-_Mons_x_TMinx__TDMX_Mix__Nhac_Remix_Gay_Nghien_Cuc_Hay_432KjbrniVs.mp3");
+var TheFatRat_1 = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/745925263845752862/y2mate.com_-_TheFatRat_-_Never_Be_Alone_Ic-gZlPFTkQ.mp3");
+var TheFatRat_2 = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/745925658089095238/y2mate.com_-_TheFatRat_-_Unity_n8X9_MgEdCg.mp3");
+var NCS = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/745925985278623794/y2mate.com_-_Alan_Walker_-_Fade_NCS_Release_bM7SZ5SBzyY.mp3");
+var YeuTuDauMaRa = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/745926553677987890/y2mate.com_-_YEU_TU_AU_MA_RA_-_LIL_ZPOET__DUNG_SOI_REMIX__Nhac_Gay_Nghien_Hay_Nhat_2020_QGDACMu-ztQ.mp3");
+var EmOiLenPho = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/745944518959824906/y2mate.com_-_Em_Oi_Len_Pho_Ciray_Remix_-_Minh_Vuong_M4U_Ban_Mix_Cuc_Cang_9YiJOiSlcL4.mp3");
 
+/* setInterval (() => {
+var playerLevel = document.getElementById("ageText").innerText.replace("AGE", "");
+var intAGE = parseInt(playerLevel);
+},0);
+*/
+var menuMusic = document.createElement("div");
+menuMusic.id = "musicMenu";
+menuMusic.setAttribute("class","menuCard");
+menuMusic.style = "background-color:black; display:none; width:50%; height:auto; left:25%; top:10%; position:absolute;";
+menuMusic.innerHTML = `
+<input id="khoccungem" type="checkBox">&nbsp;<span style="color:red;">Khóc Cùng Em</span><br />
+<input id="hongnhan" type="checkBox">&nbsp;<span style="color:red;">Hồng Nhan</span><br />
+<input id="phuduyen" type="checkBox">&nbsp;<span style="color:red;">Phụ Duyên</span><br />
+<input id="vithangoigio" type="checkBox">&nbsp;<span style="color:red;">Vị Thần Gọi Gió</span><br />
+<input id="emoilenpho" type="checkBox">&nbsp;<span style="color:red;">Em Ơi Lên Phố</span><br />
+<input id="yeutudaumara" type="checkBox">&nbsp;<span style="color:red;">Yêu Từ Đâu Mà Ra</span><br />
+<input id="neverbealone" type="checkBox">&nbsp;<span style="color:red;">Never Be Alone</span><br />
+<input id="unity" type="checkBox">&nbsp;<span style="color:red;">Unity</span><br />
+<input id="fade" type="checkBox">&nbsp;<span style="color:red;">Fade</span><br />
+`;
+document.body.appendChild(menuMusic);
+
+document.getElementById("khoccungem").onclick = () => {
+    var check1 = document.getElementById("khoccungem");
+    if (check1.checked == true) {
+        KhocCungEm.play();
+    } else {
+        KhocCungEm.pause();
+    }
+};
+document.getElementById("hongnhan").onclick = () => {
+    var check2 = document.getElementById("hongnhan");
+    if (check2.checked == true) {
+        HongNhan.play();
+    } else {
+        HongNhan.pause();
+    }
+};
+document.getElementById("phuduyen").onclick = () => {
+    var check3 = document.getElementById("phuduyen");
+    if (check3.checked == true) {
+        PhuDuyen.play();
+    } else {
+        PhuDuyen.pause();
+    }
+};
+document.getElementById("vithangoigio").onclick = () => {
+    var check4 = document.getElementById("vithangoigio");
+    if (check4.checked == true) {
+        ViThanGoiGio.play();
+    } else {
+        ViThanGoiGio.pause();
+    }
+};
+document.getElementById("emoilenpho").onclick = () => {
+    var check5 = document.getElementById("emoilenpho");
+    if (check5.checked == true) {
+        EmOiLenPho.play();
+    } else {
+        EmOiLenPho.pause();
+    }
+};
+document.getElementById("yeutudaumara").onclick = () => {
+    var check6 = document.getElementById("yeutudaumara");
+    if (check6.checked == true) {
+        YeuTuDauMaRa.play();
+    } else {
+        YeuTuDauMaRa.pause();
+    }
+};
+document.getElementById("neverbealone").onclick = () => {
+    var check7 = document.getElementById("neverbealone");
+    if (check7.checked == true) {
+        TheFatRat_1.play();
+    } else {
+        TheFatRat_1.pause();
+    }
+};
+document.getElementById("unity").onclick = () => {
+    var check8 = document.getElementById("unity");
+    if (check8.checked == true) {
+        TheFatRat_2.play();
+    } else {
+        TheFatRat_2.pause();
+    }
+};
+document.getElementById("fade").onclick = () => {
+    var check9 = document.getElementById("fade");
+    if (check9.checked == true) {
+        NCS.play();
+    } else {
+        NCS.pause();
+    }
+};
 window.addEventListener("mousedown", vnmouse, false);
   function vnmouse(event) {
       var xmouse = event.which;
@@ -33,6 +137,15 @@ window.addEventListener("keydown", (e) => {
     if (e.keyCode == 103) {
                         doNewSend(["ch",['~~~~~~Party Exit xD~~~~~~']]);
                         doNewSend(["9", [null]]);
+    }
+    if (e.keyCode == 106 && demVN == false) {
+document.getElementById("musicMenu").style.display = "block";
+        demVN = true;
+    } else {
+        if (e.keyCode == 106 && demVN == true) {
+            document.getElementById("musicMenu").style.display = "none";
+            demVN = false;
+        }
     }
 }, false);
 
