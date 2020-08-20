@@ -26,6 +26,9 @@ var TheFatRat_2 = new Audio("https://cdn.discordapp.com/attachments/745662811828
 var NCS = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/745925985278623794/y2mate.com_-_Alan_Walker_-_Fade_NCS_Release_bM7SZ5SBzyY.mp3");
 var YeuTuDauMaRa = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/745926553677987890/y2mate.com_-_YEU_TU_AU_MA_RA_-_LIL_ZPOET__DUNG_SOI_REMIX__Nhac_Gay_Nghien_Hay_Nhat_2020_QGDACMu-ztQ.mp3");
 var EmOiLenPho = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/745944518959824906/y2mate.com_-_Em_Oi_Len_Pho_Ciray_Remix_-_Minh_Vuong_M4U_Ban_Mix_Cuc_Cang_9YiJOiSlcL4.mp3");
+var CanhBa = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/745991264931020820/y2mate.com_-_CANH_BA_ORINN_REMIX_-_NGUYEN_TRAN_TRUNG_QUAN_NHAC_TRE_CANG_CUC_GAY_NGHIEN_HAY_NHAT_2020.mp3");
+var GuongMatLaLam = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/745991676438511636/y2mate.com_-_Guong_Mat_La_Lam_Remix_-_Mr.Siro_DJ_UvflwWNznLA.mp3");
+var TuTam = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/745992078533722204/y2mate.com_-_Tu_Tam_MinhQuang_Remix_-_NGUYEN_TRAN_TRUNG_QUAN_Nhac_Tre_Remix_Cang_Cuc_Gay_Nghien_Hay_.mp3");
 
 /* setInterval (() => {
 var playerLevel = document.getElementById("ageText").innerText.replace("AGE", "");
@@ -46,6 +49,9 @@ menuMusic.innerHTML = `
 <input id="neverbealone" type="checkBox">&nbsp;<span style="color:red;">Never Be Alone</span><br />
 <input id="unity" type="checkBox">&nbsp;<span style="color:red;">Unity</span><br />
 <input id="fade" type="checkBox">&nbsp;<span style="color:red;">Fade</span><br />
+<input id="canhba" type="checkBox">&nbsp;<span style="color:red;">Canh Ba</span><br />
+<input id="guongmatlalam" type="checkBox">&nbsp;<span style="color:red;">Gương Mặt Lạ Lẫm</span><br />
+<input id="tutam" type="checkBox">&nbsp;<span style="color:red;">Tự Tâm</span><br />
 `;
 document.body.appendChild(menuMusic);
 
@@ -119,6 +125,30 @@ document.getElementById("fade").onclick = () => {
         NCS.play();
     } else {
         NCS.pause();
+    }
+};
+document.getElementById("canhba").onclick = () => {
+    var check10 = document.getElementById("canhba");
+    if (check10.checked == true) {
+        CanhBa.play();
+    } else {
+        CanhBa.pause();
+    }
+};
+document.getElementById("guongmatlalam").onclick = () => {
+    var check11 = document.getElementById("guongmatlalam");
+    if (check11.checked == true) {
+        GuongMatLaLam.play();
+    } else {
+        GuongMatLaLam.pause();
+    }
+};
+document.getElementById("tutam").onclick = () => {
+    var check12 = document.getElementById("tutam");
+    if (check12.checked == true) {
+        TuTam.play();
+    } else {
+        TuTam.pause();
     }
 };
 window.addEventListener("mousedown", vnmouse, false);
