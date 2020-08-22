@@ -29,12 +29,27 @@ var EmOiLenPho = new Audio("https://cdn.discordapp.com/attachments/7456628118283
 var CanhBa = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/745991264931020820/y2mate.com_-_CANH_BA_ORINN_REMIX_-_NGUYEN_TRAN_TRUNG_QUAN_NHAC_TRE_CANG_CUC_GAY_NGHIEN_HAY_NHAT_2020.mp3");
 var GuongMatLaLam = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/745991676438511636/y2mate.com_-_Guong_Mat_La_Lam_Remix_-_Mr.Siro_DJ_UvflwWNznLA.mp3");
 var TuTam = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/745992078533722204/y2mate.com_-_Tu_Tam_MinhQuang_Remix_-_NGUYEN_TRAN_TRUNG_QUAN_Nhac_Tre_Remix_Cang_Cuc_Gay_Nghien_Hay_.mp3");
-
-/* setInterval (() => {
-var playerLevel = document.getElementById("ageText").innerText.replace("AGE", "");
-var intAGE = parseInt(playerLevel);
+var MuonNoiVoiEm = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/746406910537891840/y2mate.com_-_MUON_NOI_VOI_EM_-_TTeam_x_BlackBi__LeManic_Remix__Nho_eo_Tai_Nghe_iwOxK-SBP8M.mp3");
+var UCoAnhDay = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/746407432758100089/y2mate.com_-_U_Co_Anh_ay_Remix_-_Tino_AnNhan_WK8nVZL0aco.mp3");
+var MotBuocYeuVanDamDau = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/746407863848796170/y2mate.com_-_Mot_Buoc_Yeu_Van_Dam_au__Htrol_Remix__xRVFG-ZDPtk.mp3");
+var KhongTheCungNhauSuotKiep = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/746408124575121458/y2mate.com_-_Khong_The_Cung_Nhau_Suot_Kiep_Mr.Siro_Piano_Version_c-wLsZJ145o.mp3");
+var KhoVeNuCuoi = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/746408514569896037/y2mate.com_-_Kho_Ve_Nu_Cuoi__Htrol_Remix__atG_x_DuUyen_EDM_Ver_Nhac_gay_nghien_2019_E4uSPqpq0IA.mp3");
+var deathSound = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/746608730002423838/y2mate.com_-_Hay_Lam_it_me_may_hai_vl_2eo7lp7X5-0.mp3");
+setTimeout(() => {
+setInterval (() => {
+var playerLive = document.getElementById("gameUI");
+    var xxx = playerLive.outerHTML;
+    var sss = "";
+  for (var vn = 0; vn<40; vn++) {
+      sss = sss + xxx[vn];
+  }
+    if (sss == "<div id=\"gameUI\" style=\"display: none;\">") {
+        deathSound.play();
+    }
 },0);
-*/
+}
+    ,20000);
+
 var menuMusic = document.createElement("div");
 menuMusic.id = "musicMenu";
 menuMusic.setAttribute("class","menuCard");
@@ -52,9 +67,175 @@ menuMusic.innerHTML = `
 <input id="canhba" type="checkBox">&nbsp;<span style="color:red;">Canh Ba</span><br />
 <input id="guongmatlalam" type="checkBox">&nbsp;<span style="color:red;">Gương Mặt Lạ Lẫm</span><br />
 <input id="tutam" type="checkBox">&nbsp;<span style="color:red;">Tự Tâm</span><br />
+<input id="muonnoivoiem" type="checkBox">&nbsp;<span style="color:red;">Muốn Nói Với Em</span><br />
+<input id="ucoanhday" type="checkBox">&nbsp;<span style="color:red;">Ừ Có Anh Đây</span><br />
+<input id="motbuocyeuvandamdau" type="checkBox">&nbsp;<span style="color:red;">Một Bước Yêu Vạn Dặm Đau</span><br />
+<input id="khongthecungnhausuotkiep" type="checkBox">&nbsp;<span style="color:red;">Không Thể Cùng Nhau Suốt Kiếp</span><br />
+<input id="khovenucuoi" type="checkBox">&nbsp;<span style="color:red;">Khó Vẽ Nụ Cười</span><br />
+<p style="color:white; font-size:34px;"><b>Cài Đặt Giao Diện</b></p>
+<span style="color:white;">Màu:</span>&nbsp;<input id="maudo" type="checkBox" /><span style="color:red;">Màu đỏ</span>&nbsp;&nbsp;&nbsp;<input id="mauxanhla" type="checkBox" /><span style="color:green;">Màu Xanh Lá</span>&nbsp;&nbsp;&nbsp;<input id="mauxanhduong" type="checkBox" /><span style="color:blue;">Màu xanh dương</span>&nbsp;&nbsp;&nbsp;<br />
+<span style="color:white;">Chức năng khác:</span>&nbsp;<input id="vukhitron" type="checkBox" /><span style="color:white;">Thay đổi giao diện chọn vũ khí</span>&nbsp;&nbsp;&nbsp;<input id="biomeMap" type="checkBox" /><span style="color:white;">Bản đồ hỗ trợ</span><br />
+<span style="color:white">Màu nền:</span>&nbsp;<input id="nenmaudo" type="text" placeHolder="Nhập màu:red;green,blue..." />
 `;
-document.body.appendChild(menuMusic);
 
+var stylevn = document.createElement("style");
+stylevn.id = "stylevn";
+stylevn.type = "text/css";
+stylevn.innerHTML = `
+.actionBarItem {
+     border-radius:50px;
+}
+#chatButton, #storeButton, #allianceButton {
+     border-radius:50px;
+}
+`;
+
+document.body.appendChild(menuMusic);
+document.getElementById("biomeMap").onclick = () => {
+    var checkBox = document.getElementById("biomeMap");
+    if (checkBox.checked == true) {
+        document.getElementById("mapDisplay").style = "background-image:url('https://i.imgur.com/Qllo1mA.png');";
+    } else {
+        document.getElementById("mapDisplay").style = "background-image:none;";
+    }
+};
+document.getElementById("vukhitron").onclick = () => {
+    var checkBox = document.getElementById("vukhitron");
+    if (checkBox.checked == true) {
+        document.body.appendChild(stylevn);
+    } else {
+        document.getElementById("stylevn").remove();
+    }
+};
+var object = document.createElement("style");
+object.type = "text/css";
+object.id = "textRED";
+document.body.appendChild(object);
+
+document.getElementById("nenmaudo").onkeyup = () => {
+    var col = document.getElementById("nenmaudo").value;
+    var backg = "background-color:" + col + ";";
+    document.getElementById("allianceButton").style = "background-color:" + col + ";";
+    document.getElementById("storeButton").style = "background-color:" + col + ";";
+    document.getElementById("chatButton").style = "background-color:" + col + ";";
+    document.getElementById("topInfoHolder").style = "background-color:" + col + ";";
+    document.getElementById("foodDisplay").style = "background-color:" + col + ";";
+    document.getElementById("woodDisplay").style = "background-color:" + col + ";";
+    document.getElementById("stoneDisplay").style = "background-color:" + col + ";";
+    document.getElementById("scoreDisplay").style = "background-color:" + col + ";";
+    document.getElementById("ageBar").style = "background-color:" + col + ";";
+    document.getElementById("killCounter").style = "background-color:" + col + ";";
+    object.innerHTML = ".actionBarItem {" + backg + "}";
+};
+
+document.getElementById("maudo").onclick = () => {
+    document.getElementById("mauxanhla").checked = false;
+    document.getElementById("mauxanhduong").checked = false;
+    var check_red = document.getElementById("maudo");
+    if (check_red.checked == true) {
+        document.getElementById("ageBarBody").style = "background-color:red;";
+        document.getElementById("leaderboard").style.color = "red";
+        document.getElementById("gameName").style.color = "red";
+        document.getElementById("setupCard").style.color = "red";
+        document.getElementById("scoreDisplay").style.color = "red";
+        document.getElementById("woodDisplay").style.color = "red";
+        document.getElementById("stoneDisplay").style.color = "red";
+        document.getElementById("killCounter").style.color = "red";
+        document.getElementById("foodDisplay").style.color = "red";
+        document.getElementById("ageText").style.color = "red";
+        document.getElementById("allianceButton").style.color = "red";
+        document.getElementById("chatButton").style.color = "red";
+        document.getElementById("storeButton").style.color = "red";
+        document.getElementById("loadingText").style.color = "red";
+} else {
+        document.getElementById("ageBarBody").style = "background-color:white;";
+        document.getElementById("leaderboard").style.color = "white";
+        document.getElementById("gameName").style.color = "white";
+        document.getElementById("setupCard").style.color = "white";
+        document.getElementById("scoreDisplay").style.color = "white";
+        document.getElementById("woodDisplay").style.color = "white";
+        document.getElementById("stoneDisplay").style.color = "white";
+        document.getElementById("killCounter").style.color = "white";
+        document.getElementById("foodDisplay").style.color = "white";
+        document.getElementById("ageText").style.color = "white";
+        document.getElementById("allianceButton").style.color = "white";
+        document.getElementById("chatButton").style.color = "white";
+        document.getElementById("storeButton").style.color = "white";
+        document.getElementById("loadingText").style.color = "white";
+}
+};
+document.getElementById("mauxanhla").onclick = () => {
+    document.getElementById("maudo").checked = false;
+    document.getElementById("mauxanhduong").checked = false;
+    var check_red = document.getElementById("mauxanhla");
+    if (check_red.checked == true) {
+        document.getElementById("ageBarBody").style = "background-color:green;";
+        document.getElementById("leaderboard").style.color = "green";
+        document.getElementById("gameName").style.color = "green";
+        document.getElementById("setupCard").style.color = "green";
+        document.getElementById("scoreDisplay").style.color = "green";
+        document.getElementById("woodDisplay").style.color = "green";
+        document.getElementById("stoneDisplay").style.color = "green";
+        document.getElementById("killCounter").style.color = "green";
+        document.getElementById("foodDisplay").style.color = "green";
+        document.getElementById("ageText").style.color = "green";
+        document.getElementById("allianceButton").style.color = "green";
+        document.getElementById("chatButton").style.color = "green";
+        document.getElementById("storeButton").style.color = "green";
+        document.getElementById("loadingText").style.color = "green";
+} else {
+        document.getElementById("ageBarBody").style = "backrgound-color:white;";
+        document.getElementById("leaderboard").style.color = "white";
+        document.getElementById("gameName").style.color = "white";
+        document.getElementById("setupCard").style.color = "white";
+        document.getElementById("scoreDisplay").style.color = "white";
+        document.getElementById("woodDisplay").style.color = "white";
+        document.getElementById("stoneDisplay").style.color = "white";
+        document.getElementById("killCounter").style.color = "white";
+        document.getElementById("foodDisplay").style.color = "white";
+        document.getElementById("ageText").style.color = "white";
+        document.getElementById("allianceButton").style.color = "white";
+        document.getElementById("chatButton").style.color = "white";
+        document.getElementById("storeButton").style.color = "white";
+        document.getElementById("loadingText").style.color = "white";
+}
+};
+document.getElementById("mauxanhduong").onclick = () => {
+    document.getElementById("maudo").checked = false;
+    document.getElementById("mauxanhla").checked = false;
+    var check_red = document.getElementById("mauxanhduong");
+    if (check_red.checked == true) {
+        document.getElementById("ageBarBody").style = "background-color:blue;";
+        document.getElementById("leaderboard").style.color = "blue";
+        document.getElementById("gameName").style.color = "blue";
+        document.getElementById("setupCard").style.color = "blue";
+        document.getElementById("scoreDisplay").style.color = "blue";
+        document.getElementById("woodDisplay").style.color = "blue";
+        document.getElementById("stoneDisplay").style.color = "blue";
+        document.getElementById("killCounter").style.color = "blue";
+        document.getElementById("foodDisplay").style.color = "blue";
+        document.getElementById("ageText").style.color = "blue";
+        document.getElementById("allianceButton").style.color = "blue";
+        document.getElementById("chatButton").style.color = "blue";
+        document.getElementById("storeButton").style.color = "blue";
+        document.getElementById("loadingText").style.color = "blue";
+} else {
+        document.getElementById("ageBarBody").style = "background-color:white;";
+        document.getElementById("leaderboard").style.color = "white";
+        document.getElementById("gameName").style.color = "white";
+        document.getElementById("setupCard").style.color = "white";
+        document.getElementById("scoreDisplay").style.color = "white";
+        document.getElementById("woodDisplay").style.color = "white";
+        document.getElementById("stoneDisplay").style.color = "white";
+        document.getElementById("killCounter").style.color = "white";
+        document.getElementById("foodDisplay").style.color = "white";
+        document.getElementById("ageText").style.color = "white";
+        document.getElementById("allianceButton").style.color = "white";
+        document.getElementById("chatButton").style.color = "white";
+        document.getElementById("storeButton").style.color = "white";
+        document.getElementById("loadingText").style.color = "white";
+}
+};
 document.getElementById("khoccungem").onclick = () => {
     var check1 = document.getElementById("khoccungem");
     if (check1.checked == true) {
@@ -151,15 +332,73 @@ document.getElementById("tutam").onclick = () => {
         TuTam.pause();
     }
 };
+document.getElementById("muonnoivoiem").onclick = () => {
+    var check13 = document.getElementById("muonnoivoiem");
+    if (check13.checked == true) {
+        MuonNoiVoiEm.play();
+    } else {
+        MuonNoiVoiEm.pause();
+    }
+};
+document.getElementById("ucoanhday").onclick = () => {
+    var check14 = document.getElementById("ucoanhday");
+    if (check14.checked == true) {
+        UCoAnhDay.play();
+    } else {
+        UCoAnhDay.pause();
+    }
+};
+document.getElementById("motbuocyeuvandamdau").onclick = () => {
+    var check15 = document.getElementById("motbuocyeuvandamdau");
+    if (check15.checked == true) {
+        MotBuocYeuVanDamDau.play();
+    } else {
+        MotBuocYeuVanDamDau.pause();
+    }
+};
+document.getElementById("khongthecungnhausuotkiep").onclick = () => {
+    var check16 = document.getElementById("khongthecungnhausuotkiep");
+    if (check16.checked == true) {
+        KhongTheCungNhauSuotKiep.play();
+    } else {
+        KhongTheCungNhauSuotKiep.pause();
+    }
+};
+document.getElementById("khovenucuoi").onclick = () => {
+    var check17 = document.getElementById("khovenucuoi");
+    if (check17.checked == true) {
+        KhoVeNuCuoi.play();
+    } else {
+        KhoVeNuCuoi.pause();
+    }
+};
+var ccc = false;
+var nhantin = document.createElement("div");
+nhantin.id = "nhantin";
+nhantin.style = "display:none; width:auto; height:7%; color:red; left:40%; bottom:20%; position:absolute;";
+nhantin.innerHTML = `
+<input id="tinnhan" type="text" placeHolder="Messenger..." maxlength="30"/><br />
+<button id="sendtosever" style="background-color:white;">Enter To Send</button>
+`;
+document.body.appendChild(nhantin);
+let tin;
+document.getElementById("tinnhan").onkeyup = () => {
+   tin = document.getElementById("tinnhan").value;
+};
+
+document.getElementById("sendtosever").onclick = () => {
+    doNewSend(["ch",[tin]]);
+    document.getElementById("tinnhan").value = "";
+};
 window.addEventListener("mousedown", vnmouse, false);
   function vnmouse(event) {
       var xmouse = event.which;
-      if (xmouse == 2 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+      if (xmouse == 2 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
           runvn = setInterval (() => {
           place(spikeType);
           },0);
       }
-      if (xmouse == 3 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+      if (xmouse == 3 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
           hat(idTankGear);
       }
 }
@@ -177,6 +416,16 @@ document.getElementById("musicMenu").style.display = "block";
             demVN = false;
         }
     }
+    if (e.keyCode == 13 && ccc == false) {
+        document.getElementById("nhantin").style.display = "block";
+        ccc = true;
+    } else {
+        if (e.keyCode == 13 && ccc == true) {
+        document.getElementById("nhantin").style.display = "none";
+            document.getElementById("sendtosever").click();
+            ccc = false;
+        }
+    }
 }, false);
 
 window.addEventListener("mouseup", vnup, false);
@@ -185,6 +434,14 @@ function vnup(ee) {
         clearInterval(runvn);
     }
 }
+
+document.getElementById("chatBox").remove();
+
+$(document).keydown(function(objEvent) {
+    if (objEvent.keyCode == 9) {
+        objEvent.preventDefault();
+    }
+});
 
 var doinginsta = false;
 var autopit = false;
@@ -203,22 +460,9 @@ $('#gameName').css({'color': '#AE0000',
                     'text-align': 'center',
                     'font-size': '126px',
                     'margin-bottom': '-30px'});
-document.getElementById("leaderboard").style.color = "red";
-document.getElementById("gameName").style.color = "red";
-document.getElementById("setupCard").style.color = "red";
 document.getElementById("promoImg").remove();
-document.getElementById("scoreDisplay").style.color = "red";
-document.getElementById("woodDisplay").style.color = "red";
-document.getElementById("stoneDisplay").style.color = "red";
-document.getElementById("killCounter").style.color = "red";
-document.getElementById("foodDisplay").style.color = "red";
-document.getElementById("ageText").style.color = "red";
-document.getElementById("allianceButton").style.color = "red";
-document.getElementById("chatButton").style.color = "red";
-document.getElementById("storeButton").style.color = "red";
-document.getElementById("leaderboard").append('~V-0.4~');
-document.getElementById('loadingText').innerHTML = "0.4";
-document.getElementById("loadingText").style.color = "red";
+document.getElementById("leaderboard").append('~V-Last~');
+document.getElementById('loadingText').innerHTML = "Last";
 let _1536E = false;
 //https://i.imgur.com/fgFsQJp.png
 //https://imgur.com/9K3aTqY.png
@@ -228,7 +472,7 @@ var soundx;
 soundx = "https://cdn.discordapp.com/attachments/705987996695920770/705988098588147742/TheFatRat_-_Unity.mp3"
 var sound = new Audio(soundx)
 var boomx;
-boomx = "http://soundbible.com/grab.php?id=1919&type=mp3"
+boomx = "https://cdn.discordapp.com/attachments/745662811828387960/746608279807066182/y2mate.com_-_ui_doi_oi_de_vai_lon_it_me_H1tV2P7u5_Q.mp3"
 var boom = new Audio(boomx)
 var gunshotx;
 gunshotx = "http://soundbible.com/grab.php?id=2121&type=mp3"
@@ -262,7 +506,7 @@ setInterval(() => {
      killcount = parseInt(document.getElementById("killCounter").innerText);
         if (killcount > kills) {
             boom.play();
-            doNewSend(["ch",[killcount+' kills']]);
+            doNewSend(["ch",['KILL Ez Nub: ' + killcount]]);
         }
         kills = killcount;
 },20);
@@ -613,7 +857,7 @@ var repeater = function(key, action, interval) {
 
     return {
         start(keycode) {
-            if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox') {
+            if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
                 _isKeyDown = true;
                 if(_intervalId === undefined) {
                     _intervalId = setInterval(() => {
@@ -629,7 +873,7 @@ var repeater = function(key, action, interval) {
         },
 
         stop(keycode) {
-            if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox') {
+            if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
                 _isKeyDown = false;
             }
         }
@@ -654,7 +898,7 @@ document.addEventListener('keydown', (e)=>{
     turretPlacer.start(e.keyCode);
 
 
-    if (e.keyCode == 69 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    if (e.keyCode == 69 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         hitToggle = (hitToggle + 1) % 2;
         if(hitTToggle == 1){
             if(hitToggle == 1) {
@@ -668,32 +912,32 @@ document.addEventListener('keydown', (e)=>{
             }
         }
     }
-    if (e.keyCode == 73 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    if (e.keyCode == 73 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         for (let i=0;i<4;i++){
              let angle = myPlayer.dir + toRad(i * 90);
              place(boostType, angle)
         }
     }
-    if (e.keyCode == 17 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    if (e.keyCode == 17 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         for (let i=0;i<5;i++){
              let angle = myPlayer.dir + toRad(i * 72);
              place(millType, angle)
         }
     }
-    if (e.keyCode == 186 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    if (e.keyCode == 186 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         for (let i=0;i<4;i++){
              let angle = myPlayer.dir + toRad(i * 90);
              place(spikeType, angle)
         }//doNewSend(["ch",["hahahahahah"]]);
     }
-    if (e.keyCode == 72 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    if (e.keyCode == 72 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         place(turretType, myPlayer.dir + toRad(45));
         place(turretType, myPlayer.dir - toRad(45));
     }
-    if(e.keyCode == 38 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    if(e.keyCode == 38 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         messageToggle = (messageToggle + 1) % 2;
     }
-    if (e.keyCode == 76 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    if (e.keyCode == 76 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         woodLeft = document.getElementById("woodDisplay").innerHTML;
         stoneLeft = document.getElementById("stoneDisplay").innerHTML;
         if(woodLeft > 100 && stoneLeft > 75){
@@ -713,10 +957,10 @@ document.addEventListener('keydown', (e)=>{
             doNewSend(["9", [null]]);
         }, 75);
     }
-    if (e.keyCode == 85 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    if (e.keyCode == 85 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         hitTToggle = (hitTToggle + 1) % 2;
     }
-if(e.keyCode == 96 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+if(e.keyCode == 96 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         autoaim = true;
          doNewSend(["ch", ['~~~~~~RELOAD~~~~~~']]);
         doNewSend(["5", [primary, true]]);
@@ -759,7 +1003,7 @@ if(e.keyCode == 96 && document.activeElement.id.toLowerCase() !== 'chatbox') {
             autoaim = null;
         }, instaSpeed);
     }
-   /* if(e.keyCode == 32 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+   /* if(e.keyCode == 32 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         autoaim = true;
         doNewSend(["5", [primary, true]]);
         doNewSend(["13c", [0, 7, 0]]);
@@ -778,7 +1022,7 @@ if(e.keyCode == 96 && document.activeElement.id.toLowerCase() !== 'chatbox') {
             autoaim = false;
         }, 200);
     }*/
-    /*if(e.keyCode == 32 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    /*if(e.keyCode == 32 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
 
         doNewSend(["5", [primary, true]]);
         doNewSend(["13c", [0, 7, 0]]);
@@ -789,7 +1033,7 @@ if(e.keyCode == 96 && document.activeElement.id.toLowerCase() !== 'chatbox') {
 
         }, 200);
     }*/
-    if(e.keyCode == 80 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    if(e.keyCode == 80 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         doNewSend(["5", [primary, true]]);
         doNewSend(["13c", [0, 7, 0]]);
         doNewSend(["13c", [0, 0, 1]]);
@@ -802,7 +1046,7 @@ if(e.keyCode == 96 && document.activeElement.id.toLowerCase() !== 'chatbox') {
             doNewSend(["13c", [0, 6, 0]]);
         }, 200);
     }
-    /*if(e.keyCode == 35 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    /*if(e.keyCode == 35 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         musicp = (musicp + 1) % 2
         if (musicp == 1){
             sound.play();
@@ -811,7 +1055,7 @@ if(e.keyCode == 96 && document.activeElement.id.toLowerCase() !== 'chatbox') {
     }*/
 
 
-    if(e.keyCode == 84 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    if(e.keyCode == 84 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         healToggle = (healToggle + 1) % 2;
         if(healToggle == 0) {
             if(hatToggle == 0) {
@@ -831,7 +1075,7 @@ if(e.keyCode == 96 && document.activeElement.id.toLowerCase() !== 'chatbox') {
             }
         }
     }
-    if (e.keyCode == 113 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    if (e.keyCode == 113 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         gunshot.play();
         autoaim = true
         doNewSend(["5", [secondary, true]]);
@@ -865,7 +1109,7 @@ if(e.keyCode == 96 && document.activeElement.id.toLowerCase() !== 'chatbox') {
         }, 80);
         autoaim = false
     }
-    if(e.keyCode == 112 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    if(e.keyCode == 112 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         autoaim = true;
         doNewSend(["5", [primary, true]]);
         doNewSend(["13c", [0, 7, 0]]);
@@ -882,14 +1126,14 @@ if(e.keyCode == 96 && document.activeElement.id.toLowerCase() !== 'chatbox') {
         }, 50);
     }
 
-    /*if(e.keyCode == 33 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    /*if(e.keyCode == 33 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         doNewSend(["6", [4]]);
     }
 
-    if(e.keyCode == 34 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    if(e.keyCode == 34 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         doNewSend(["6", [15]]);
     }*/
-    if(e.keyCode == 33 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    if(e.keyCode == 33 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         if(instaSpeedd != 10){
             instaSpeedd += 1;
         }else{
@@ -898,7 +1142,7 @@ if(e.keyCode == 96 && document.activeElement.id.toLowerCase() !== 'chatbox') {
             doNewSend(["ch",["Insta-kill Speed: "+ instaSpeedd + "/10"]]);
         instaSpeed = (10 - instaSpeedd) * 10 + 170;
     }
-    if(e.keyCode == 34 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    if(e.keyCode == 34 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         if(healSpeedd != 10){
             healSpeedd += 1;
         }else{
@@ -907,21 +1151,21 @@ if(e.keyCode == 96 && document.activeElement.id.toLowerCase() !== 'chatbox') {
             doNewSend(["ch",["AutoHeal Speed: " + healSpeedd + "/10"]]);
         healSpeed = (10 - healSpeedd) * 10 + 40;
     }
-    if(e.keyCode == 36 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    if(e.keyCode == 36 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         doNewSend(["6", [4]]);
         doNewSend(["6", [15]]);
     }
-    if(e.keyCode == 35 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    if(e.keyCode == 35 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         doNewSend(["6", [5]]);
     }
-    if(e.keyCode == 99 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    if(e.keyCode == 99 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         doNewSend(["6", [28]]);
     }
-    if(e.keyCode == 105 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    if(e.keyCode == 105 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         doNewSend(["6", [28]]);
         doNewSend(["6", [25]]);
     }
-    if(e.keyCode == 77 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    if(e.keyCode == 77 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         hatToggle = (hatToggle + 1) % 2;
         if(healToggle == 0) {
             if(hatToggle == 0) {
@@ -950,7 +1194,7 @@ document.addEventListener('keyup', (e)=>{
     millPlacer.stop(e.keyCode);
     turretPlacer.stop(e.keyCode);
     healer.stop(e.keyCode);
-    if(e.keyCode == 71 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    if(e.keyCode == 71 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
         setTimeout( () => {
             doNewSend(["33", [null]]);
             boostDir = null;
@@ -1590,7 +1834,7 @@ newImgx.addEventListener("click", () => {
 }
 
 document.addEventListener('keydown', function(e) {
-    if (e.keyCode == uneqiupK && document.activeElement.id.toLowerCase() !== 'chatbox'){
+    if (e.keyCode == uneqiupK && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false){
     } else if (e.keyCode == 27){
         if (setOpen == 0) {
             modal.style.display = "block";
@@ -1599,23 +1843,23 @@ document.addEventListener('keydown', function(e) {
             modal.style.display = "none";
             setOpen = 0
         }
-    } else if (e.keyCode == TankGearK && document.activeElement.id.toLowerCase() !== 'chatbox'){
+    } else if (e.keyCode == TankGearK && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false){
         hat(idTankGear);
         acc(18)
-    } else if (e.keyCode == SoldierHelmetK && document.activeElement.id.toLowerCase() !== 'chatbox'){
+    } else if (e.keyCode == SoldierHelmetK && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false){
         hat(idSoldierHelmet);
         acc(21)
-    } else if (e.keyCode == BullHelmetK && document.activeElement.id.toLowerCase() !== 'chatbox'){
+    } else if (e.keyCode == BullHelmetK && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false){
         hat(idBullHelmet);
         acc(18)
-    } else if (e.keyCode == BoosterHatK && document.activeElement.id.toLowerCase() !== 'chatbox'){
+    } else if (e.keyCode == BoosterHatK && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false){
         hat(idBoosterHat);
         acc(12)
-    } else if (e.keyCode == EmpHelmetK && document.activeElement.id.toLowerCase() !== 'chatbox'){
+    } else if (e.keyCode == EmpHelmetK && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false){
         hat(idEmpHelmet);
-    } else if (e.keyCode == SpikeGearK && document.activeElement.id.toLowerCase() !== 'chatbox'){
+    } else if (e.keyCode == SpikeGearK && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false){
         hat(idSpikeGear);
-    } else if (e.keyCode == TurretGearK && document.activeElement.id.toLowerCase() !== 'chatbox'){
+    } else if (e.keyCode == TurretGearK && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false){
         hat(idTurretGear);
     }
 })
