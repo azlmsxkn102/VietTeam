@@ -1,0 +1,32 @@
+doNewSend(["13c", [0, id, 0]]);  <= Equip Hat
+
+    doNewSend(["13c", [0, 0, 1]]);
+    doNewSend(["13c", [0, id, 1]]);
+<= equip Wings
+doNewSend(["5", [primary, true]]); <= Lấy kiếm
+doNewSend(["5", [secondary, true]]); <= Lấy súng
+
+doNewSend(["ch", [(true, 5)]])
+doNewSend(["c", [1]]); <= Chém không ngừng
+
+doNewSend(["c", [0, null]]); <= Ngừng chém
+
+21 CX wings
+18 Blood Wings
+
+var idFlipperHat = 31;
+var idMarksmanCap = 1;
+var idBushGear = 10;
+var idWinterCap = 15;
+var idSoldierHelmet = 6;
+var idAntiVenomGear = 23;
+var idMusketeerHat = 32;
+var idMedicGear = 13;
+var idBullHelmet = 7;
+var idEmpHelmet = 22;
+var idBoosterHat = 12;
+var idBarbarianArmor = 26;
+var idSpikeGear = 11;
+var idSamuraiArmor = 20;
+var idTankGear = 40;
+var idTurretGear = 53;
