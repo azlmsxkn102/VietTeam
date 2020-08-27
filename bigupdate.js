@@ -16,7 +16,7 @@
 */
 // ==/UserScript==
 var demVN = false;
-var runvn;
+let runvn;
 var KhocCungEm = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/745923415105470544/y2mate.com_-_Khoc_Cung_Em_Remix_-_Mr_Siro__Nhat_oan_Remix__QyhmPAZL6c4.mp3");
 var HongNhan = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/745923826944180314/y2mate.com_-_HONG_NHAN_-_JACK__TNBH_REMIX__rSI_rS2Om5Q.mp3");
 var PhuDuyen = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/745924386023931924/y2mate.com_-_PHU_DUYEN_DinhLong_Remix_-_Phat_Ho_x_JokeS_Bii_x_Sinike_Official_Music_N9Il__ljiu8.mp3");
@@ -35,6 +35,58 @@ var MotBuocYeuVanDamDau = new Audio("https://cdn.discordapp.com/attachments/7456
 var KhongTheCungNhauSuotKiep = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/746408124575121458/y2mate.com_-_Khong_The_Cung_Nhau_Suot_Kiep_Mr.Siro_Piano_Version_c-wLsZJ145o.mp3");
 var KhoVeNuCuoi = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/746408514569896037/y2mate.com_-_Kho_Ve_Nu_Cuoi__Htrol_Remix__atG_x_DuUyen_EDM_Ver_Nhac_gay_nghien_2019_E4uSPqpq0IA.mp3");
 var deathSound = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/746608730002423838/y2mate.com_-_Hay_Lam_it_me_may_hai_vl_2eo7lp7X5-0.mp3");
+
+document.getElementById("gameName").innerHTML = "💢";
+document.getElementById("gameName").style.color = "red";
+setTimeout (() => {
+    document.getElementById("gameName").innerHTML = "💢💢";
+    document.getElementById("gameName").style.color = "red";
+},1000);
+
+setTimeout (() => {
+    document.getElementById("gameName").innerHTML = "💢S_💢";
+    document.getElementById("gameName").style.color = "red";
+},1500);
+
+setTimeout (() => {
+    document.getElementById("gameName").innerHTML = "💢SA_💢";
+    document.getElementById("gameName").style.color = "red";
+},2000);
+
+setTimeout (() => {
+    document.getElementById("gameName").innerHTML = "💢SAM__💢";
+    document.getElementById("gameName").style.color = "blue";
+},2500);
+
+setTimeout (() => {
+    document.getElementById("gameName").innerHTML = "💢SAM_M_💢";
+    document.getElementById("gameName").style.color = "green";
+},3000);
+
+setTimeout (() => {
+    document.getElementById("gameName").innerHTML = "💢SAM MO_💢";
+    document.getElementById("gameName").style.color = "orange";
+},3500);
+
+setTimeout (() => {
+    document.getElementById("gameName").innerHTML = "💢SAM MOD💢";
+    document.getElementById("gameName").style.color = "red";
+},4000);
+
+// Giao diện
+document.getElementById("setupCard").style = "background-color:rgba(255, 31, 31, 0.69); box-shadow:none; border-radius:10px; border-color:#ff0000; border-style:solid;";
+document.getElementById("promoImgHolder").style.display = "none";
+document.getElementById("guideCard").style = "background-color:rgba(255, 31, 31, 0.69); box-shadow:none; border-radius:10px; border-color:#ff0000; border-style:solid;";
+// Giao diện
+
+/*window.addEventListener('contextmenu', function (e) {
+  document.title = "Right Click: Disable";
+    setTimeout(()=> {
+        document.title = "Beta";
+    },1000);
+  e.preventDefault();
+}, false);*/
+
 setTimeout(() => {
 setInterval (() => {
 var playerLive = document.getElementById("gameUI");
@@ -74,10 +126,8 @@ menuMusic.innerHTML = `
 <input id="khovenucuoi" type="checkBox">&nbsp;<span style="color:red;">Khó Vẽ Nụ Cười</span><br />
 <p style="color:white; font-size:34px;"><b>Cài Đặt Giao Diện</b></p>
 <span style="color:white;">Màu:</span>&nbsp;<input id="maudo" type="checkBox" /><span style="color:red;">Màu đỏ</span>&nbsp;&nbsp;&nbsp;<input id="mauxanhla" type="checkBox" /><span style="color:green;">Màu Xanh Lá</span>&nbsp;&nbsp;&nbsp;<input id="mauxanhduong" type="checkBox" /><span style="color:blue;">Màu xanh dương</span>&nbsp;&nbsp;&nbsp;<br />
-<span style="color:white;">Chức năng khác:</span>&nbsp;<input id="vukhitron" type="checkBox" /><span style="color:white;">Thay đổi giao diện chọn vũ khí</span>&nbsp;&nbsp;&nbsp;<input id="biomeMap" type="checkBox" /><span style="color:white;">Bản đồ hỗ trợ</span><br />
-<span style="color:white">Màu nền:</span>&nbsp;<input id="nenmaudo" type="text" placeHolder="Nhập màu:red;green,blue..." />
+<span style="color:white;">Chức năng khác:</span>&nbsp;<input id="vukhitron" type="checkBox" /><span style="color:white;">Thay đổi giao diện chọn vũ khí</span>&nbsp;&nbsp;&nbsp;<input id="biomeMap" type="checkBox" /><span style="color:white;">Bản đồ hỗ trợ</span><input id="removeADS" type="checkBox" /><span style="color:red;">Xóa quảng cáo</span><br />
 `;
-
 var stylevn = document.createElement("style");
 stylevn.id = "stylevn";
 stylevn.type = "text/css";
@@ -106,26 +156,6 @@ document.getElementById("vukhitron").onclick = () => {
     } else {
         document.getElementById("stylevn").remove();
     }
-};
-var object = document.createElement("style");
-object.type = "text/css";
-object.id = "textRED";
-document.body.appendChild(object);
-
-document.getElementById("nenmaudo").onkeyup = () => {
-    var col = document.getElementById("nenmaudo").value;
-    var backg = "background-color:" + col + ";";
-    document.getElementById("allianceButton").style = "background-color:" + col + ";";
-    document.getElementById("storeButton").style = "background-color:" + col + ";";
-    document.getElementById("chatButton").style = "background-color:" + col + ";";
-    document.getElementById("topInfoHolder").style = "background-color:" + col + ";";
-    document.getElementById("foodDisplay").style = "background-color:" + col + ";";
-    document.getElementById("woodDisplay").style = "background-color:" + col + ";";
-    document.getElementById("stoneDisplay").style = "background-color:" + col + ";";
-    document.getElementById("scoreDisplay").style = "background-color:" + col + ";";
-    document.getElementById("ageBar").style = "background-color:" + col + ";";
-    document.getElementById("killCounter").style = "background-color:" + col + ";";
-    object.innerHTML = ".actionBarItem {" + backg + "}";
 };
 
 document.getElementById("maudo").onclick = () => {
@@ -235,6 +265,15 @@ document.getElementById("mauxanhduong").onclick = () => {
         document.getElementById("storeButton").style.color = "white";
         document.getElementById("loadingText").style.color = "white";
 }
+};
+document.getElementById("removeADS").onclick = () => {
+    var remov = document.getElementById("removeADS");
+    if (remov.checked == true) {
+        doNewSend(["ch",['Remove ADS']]);
+        document.getElementById("pre-content-container").remove();
+    } else {
+        document.getElementById("removeADS").checked = true;
+    }
 };
 document.getElementById("khoccungem").onclick = () => {
     var check1 = document.getElementById("khoccungem");
@@ -394,6 +433,7 @@ window.addEventListener("mousedown", vnmouse, false);
   function vnmouse(event) {
       var xmouse = event.which;
       if (xmouse == 2 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
+          doNewSend(["ch",['Put SpIkE...']]);
           runvn = setInterval (() => {
           place(spikeType);
           },0);
@@ -403,10 +443,6 @@ window.addEventListener("mousedown", vnmouse, false);
       }
 }
 window.addEventListener("keydown", (e) => {
-    if (e.keyCode == 103) {
-                        doNewSend(["ch",['~~~~~~Party Exit xD~~~~~~']]);
-                        doNewSend(["9", [null]]);
-    }
     if (e.keyCode == 106 && demVN == false) {
 document.getElementById("musicMenu").style.display = "block";
         demVN = true;
@@ -425,6 +461,13 @@ document.getElementById("musicMenu").style.display = "block";
             document.getElementById("sendtosever").click();
             ccc = false;
         }
+        if (e.keyCode == 123) {
+            document.title = "F12 Disable U Noob xD";
+            setTimeout (() => {
+                document.title = "SAM is best";
+            },1000);
+            e.preventDefault();
+        }
     }
 }, false);
 
@@ -439,6 +482,10 @@ document.getElementById("chatBox").remove();
 
 $(document).keydown(function(objEvent) {
     if (objEvent.keyCode == 9) {
+        document.title = "SAM Mod is number One!!";
+        objEvent.preventDefault();
+    }
+    if (objEvent.keyCode == 116) {
         objEvent.preventDefault();
     }
 });
@@ -454,7 +501,6 @@ if(changelook == true){
 $("#mapDisplay").css({background: `url('')`});
 }
 $('#ageBarContainer')['append']('<div style=\"width: 100%;position: absolute;top: 100px;text-align: center;color: red;font-size: 12px;\">\x0aPress 0 to instaKill - Press 1 to building Trap - Press 4 to Anti InstaKill Beta - (in age 9) press HOME to get katana + musket - n to building windmill - h to building turrets - rightClick = TankGear\x0a</div>')
-document.getElementById("gameName").innerHTML = "Noob Hack :)";
 $('#gameName').css({'color': '#AE0000',
                     'text-shadow': '0 1px 0 rgba(255, 255, 255, 0), 0 2px 0 rgba(255, 255, 255, 0), 0 3px 0 rgba(255, 255, 255, 0), 0 4px 0 rgba(255, 255, 255, 0), 0 5px 0 rgba(255, 255, 255, 0), 0 6px 0 rgba(255, 255, 255, 0), 0 7px 0 rgba(255, 255, 255, 0), 0 8px 0 rgba(255, 255, 255, 0), 0 9px 0 rgba(255, 255, 255, 0)',
                     'text-align': 'center',
@@ -961,8 +1007,7 @@ document.addEventListener('keydown', (e)=>{
         hitTToggle = (hitTToggle + 1) % 2;
     }
 if(e.keyCode == 96 && document.activeElement.id.toLowerCase() !== 'chatbox' && ccc == false) {
-        autoaim = true;
-         doNewSend(["ch", ['~~~~~~RELOAD~~~~~~']]);
+autoaim = true;
         doNewSend(["5", [primary, true]]);
         doNewSend(["13c", [0, 7, 0]]);
         doNewSend(["13c",[0,11,0]]);
@@ -1659,6 +1704,135 @@ $("#trap").on("input", () => {
 var styleItem = document.createElement("style");
 styleItem.type = "text/css";
 styleItem.appendChild(document.createTextNode(`
+
+#mapDisplay:hover {
+border-color:red;
+border-style:solid;
+width:20%;
+height:auto;
+background-repeat:no-repeat;
+background-size:100% 100%;
+}
+
+#scoreDisplay {
+right: 1.6%;
+left: 92.4%;
+bottom: 20.5%;
+}
+
+#itemInfoHolder {
+background-color: rgba(255, 31, 31, 0.69);
+border-color:red;
+border-style:solid;
+}
+
+.actionBarItem {
+background-color: rgba(255, 31, 31, 0.69);
+border-color:red;
+border-style:solid;
+}
+
+.actionBarItem:hover {
+background-color: #C71585;
+border-color:red;
+border-style:solid;
+}
+
+#storeHolder, #allianceHolder, #ageBar {
+background-color: rgba(255, 31, 31, 0.69);
+border-color:red;
+border-style:solid;
+border-radius:30px;
+}
+
+#allianceInput {
+background-color: rgba(255, 31, 31, 0.69);
+border-color:red;
+border-style:solid;
+border-radius:20px;
+}
+
+.allianceButtonM {
+background-color: rgba(255, 31, 31, 0.69);
+border-color:red;
+border-style:solid;
+}
+
+.allianceButtonM:hover {
+background-color: #ffffff82;
+border-color:red;
+border-style:solid;
+}
+
+.storeTab {
+background-color: rgba(255, 31, 31, 0.69);
+border-color:red;
+border-style:solid;
+border-radius:10px;
+}
+
+.storeTab:hover {
+background-color: #ffffff82;
+border-color:red;
+border-style:solid;
+border-radius:10px;
+}
+
+#foodDisplay, #woodDisplay, #stoneDisplay, #scoreDisplay, #killCounter, #storeButton, #allianceButton {
+background-color: rgba(255, 31, 31, 0.69);
+border-color:red;
+border-style:solid;
+border-radius:20px;
+}
+
+#chatButton {
+display:none;
+}
+
+#topInfoHolder {
+background-color: rgb(255, 31, 31);
+border-style: solid;
+border-color: red;
+border-radius: 10px;
+}
+
+#mainMenu {
+background-image:url("https://cdn.discordapp.com/attachments/745662811828387960/747931123753025667/Hinh-nen-hoa-anh-dao-mua-xuan-o-Nhat-Ban-768x432.jpg");
+background-repeat:no-repeat;
+background-size:100% 100%;
+}
+
+#linksContainer2 {
+background-color:rgba(255, 31, 31, 0.69);
+color:red;
+border-style:solid;
+}
+
+#serverBrowser {
+border-color:red;
+border-style:solid;
+background-color:#ff00007d;
+}
+
+#nameInput {
+color:red;
+}
+
+#enterGame {
+background-color:#ff00007d;
+border-radius:5px;
+border-style:solid;
+border-color:red;
+}
+
+#enterGame:hover {
+background-color:#5000ff5e;
+border-radius:20px;
+border-style:solid;
+border-color:black;
+border-width:5px;
+}
+
 .keyPressLow {
     margin-left: 8px;
     font-size: 12px;
@@ -1917,4 +2091,3 @@ checkbox3.addEventListener('change', function() {
         bullsoldier = false;
     }
 })
-    document.getElementById("pre-content-container").remove();
