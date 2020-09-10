@@ -20,6 +20,8 @@ var cr = false;
 var rcl = 0;
 var soldier_insta = false;
 var emp_insta = false;
+var web = false;
+var instaChat = '';
 
 function crash() {
                     for (let i=0;i<4;i++){
@@ -1478,19 +1480,16 @@ function handleMessage(m){
     }
 
    if(item == "h" && data[1] == myPlayer.id) {
-       if(data[2] < 100 && data[2] > 0 && healToggle == 1) {
-               var HPDATA = 100 - data[2];
-               doNewSend(["ch",['!WARNING!: ' + HPDATA + '% Health!:.']]);
-           setTimeout( () => {
-               place(foodType, null);
-               place(foodType, null);
-               place(foodType, null);
-               place(foodType, null);
-               place(foodType, null);
-               place(foodType, null);
-           }, healSpeed);
+if (data[2] < 100) {
+    doNewSend(["13c", [0, 6, 0]]);
+    setTimeout(()=>{
+        place(foodType, null);
+        place(foodType, null);
+        place(foodType, null);
+        place(foodType, null);
+    }, healSpeed -30);
+}
 
-       }
    }
    update();
 }
@@ -1581,6 +1580,7 @@ document.addEventListener('keydown', (e)=>{
         }
     }
     if (e.keyCode == 96 && diem == false) {
+        doNewSend(["ch",[instaChat]]);
         autoaim = true;
         doNewSend(["5", [primary, true]]);
         doNewSend(["13c", [0, 7, 0]]);
@@ -1623,7 +1623,7 @@ document.addEventListener('keydown', (e)=>{
                 doNewSend(["5", [secondary, true]]);
                 setTimeout(()=>{
                     doNewSend(["5", [primary, true]]);
-                },2000);
+                },1700);
             },1000);
             autoaim = null;
         }, instaSpeed);
@@ -1644,44 +1644,48 @@ document.addEventListener('keydown', (e)=>{
         }
     }
     if (e.keyCode == 103) {
-        acc(0);
+        autoaim = true
         doNewSend(["5", [secondary, true]]);
         doNewSend(["c", [1]]);
-        setTimeout(()=>{
+        setTimeout(() => {
+            doNewSend(["6", [12]]);
             doNewSend(["5", [secondary, true]]);
-                        doNewSend(["6", [12]]);
-                    doNewSend(["c", [1]]);
-setTimeout(()=>{
-                doNewSend(["5", [secondary, true]]);
-            doNewSend(["13c", [0, 53, 0]]);
+            doNewSend(["c", [1]]);
+            setTimeout(() => {
                 doNewSend(["6", [15]]);
-                    doNewSend(["c", [1]]);
-    setTimeout(()=>{
-        doNewSend(["13c", [0, 7, 0]]);
-        doNewSend(["5", [primary, true]]);
-        doNewSend(["c", [0, null]]);
-hat(0);
-                    if (soldier_insta == true) {
-                hat(6);
-                acc(11);
-            }
-            if (emp_insta == true) {
-                hat(22);
-                acc(11);
-            }
-            if (soldier_insta == false && emp_insta == false) {
-                                if (myPlayer.y < 2400){
-                    hat(15);
-                } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
-                    hat(31);
-                } else {
-                    hat(12);
-                }
-                acc(11);
-            }
-    },70);
-},70);
-        },70);
+                doNewSend(["5", [secondary, true]]);
+                doNewSend(["c", [1]]);
+                setTimeout(() => {
+                    hat(53)
+                    setTimeout(() => {
+                        doNewSend(["5", [primary, true]]);
+                        setTimeout(() => {
+                            hat(0)
+                            if (myPlayer.y < 2400) {
+                                hat(15);
+                            } else if (myPlayer.y > 6850 && myPlayer.y < 7550) {
+                                hat(31);
+                            } else {
+                                hat(12);
+                            }
+                            acc(11);
+                        }, 100);
+                    }, 80);
+                }, 80);
+            }, 80);
+        }, 80);
+        autoaim = false
+    }
+            if (e.keyCode == 27 && web == false) {
+        e.preventDefault();
+       document.getElementById("mp3").style.display = "block";
+        web = true;
+    } else {
+        if (e.keyCode == 27 && web == true) {
+            e.preventDefault();
+            document.getElementById("mp3").style.display = "none";
+        web = false;
+        }
     }
 })
 
@@ -1787,14 +1791,20 @@ menu.innerHTML = `
 <span>Xin chào! :> Hack này Việt Nam làm nhá :))</span><br />
 <input id="speed-insta" type="text" placeHolder="Insta Speed here..." value="235" onclick="this.select();"/>&nbsp;<span>Insta Speed</span><br />
 <input id="speed-heal" type="text" placeHolder="Heal Speed here..." value="130" onclick="this.select();"/>&nbsp;<span>Heal Speed</span><br />
+<input id="chatInsta" type="text" placeHolder="InstaChat Here" onclick="this.select();"/>&nbsp;<span>--insta chat</span><br />
 <p>-----------------------------------------------------------------------</p>
 <input id="music" type="checkBox" />&nbsp;<span>Music</span>
 <p>-----------------------------------------------------------------------</p>
 <input id="emp" type="checkBox" />&nbsp;<span>Tank Gear + Emp Helmet (right Click)</span><br />
 <input id="emp_insta" type="checkBox" />&nbsp;<span>Emp Helmet Insta</span><br />
-<input id="soldier_insta" type="checkBox" />&nbsp;<span>Soldier Insta</span>
+<input id="soldier_insta" type="checkBox" />&nbsp;<span>Soldier Insta</span><br />
+<span style="color:white;">@made by: azlmsxkn #8685</span>
 `;
 document.body.appendChild(menu);
+document.getElementById("chatInsta").onkeyup = ()=>{
+    var check = document.getElementById("chatInsta").value;
+    instaChat = check;
+};
 document.getElementById("emp_insta").onclick = ()=>{
     emp_insta = false;
     soldier_insta = false;
@@ -1903,6 +1913,13 @@ function haha() {
 }
 setInterval(haha, 1800);
 
+var mp3 = document.createElement("div");
+mp3.id = "mp3";
+mp3.innerHTML = `
+<iframe src="https://www.nhaccuatui.com/" style="width:100%; height:100%;"></iframe>
+`;
+document.body.appendChild(mp3);
+
 var styles = document.createElement("style");
 styles.type = "text/css";
 styles.innerHTML = `
@@ -1918,19 +1935,14 @@ box-shadow:none;
 .menuHeader {
 color:red;
 }
-#nameInput, #enterGame {
+#nameInput {
 border-style:solid;
 border-color:red;
 color:red;
 background-color:#f000;
 transition:1.5s;
 }
-#enterGame:hover {
-border-style:solid;
-border-color:red;
-color:red;
-background-color:white;
-}
+
 #linksContainer2 {
 display:none;
 }
@@ -1971,5 +1983,39 @@ z-index:100000;
 .actionBarItem {
 margin-top:2%;
 }
+#mp3 {
+display:none;
+z-index:10;
+top:5%;
+width:100%;
+height:50%;
+position:absolute;
+background-color:red;
+}
+
+.menuButton {
+background-color:red;
+}
+.menuButton:hover {
+background-color:pink;
+}
 `;
 document.body.appendChild(styles);
+var xd; xd = "https://cdn.discordapp.com/attachments/670777278699012136/724148849408606328/Ben_says_EZ_-_Sound_Effect_HD.mp3";
+
+    var count2;
+
+    var ezxdxdwa = new Audio(xd)
+
+    var kills = 0;
+
+    setInterval(getkills, 0);
+
+    function getkills() {
+        count2 = parseInt(document.getElementById("killCounter").innerText);
+        if (count2 > kills) {
+            ezxdxdwa.play();
+            doNewSend(["ch", ["-;WutwyUDied~;-;-"]]);
+        }
+        kills = count2;
+    }
