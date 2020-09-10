@@ -1481,7 +1481,12 @@ function handleMessage(m){
 
    if(item == "h" && data[1] == myPlayer.id) {
 if (data[2] < 100) {
-    doNewSend(["13c", [0, 6, 0]]);
+    if (rcl == 1) {
+    doNewSend(["13c", [0, 22, 0]]);
+    }
+    if (rcl == 0) {
+        doNewSend(["13c", [0, 6, 0]]);
+    }
     setTimeout(()=>{
         place(foodType, null);
         place(foodType, null);
