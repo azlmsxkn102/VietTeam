@@ -1657,13 +1657,12 @@ var repeater = function(key, action, interval) {
 
 
 }
-var millX = false;
 const healer1 = repeater(100, () => {place(foodType, boostDir);
                                     place(foodType, boostDir);
                                     place(foodType, boostDir)}, 50);
+const millPlacer = repeater(78, () => {place(millType)}, 0);
 const boostPlacer = repeater(97, () => {place(boostType)}, 0);
 const spikePlacer = repeater(86, () => {place(spikeType)}, 0);
-let millBuild;
 const turretPlacer = repeater(72, () => {place(turretType)}, 0);
 var diem = false;
 document.addEventListener('keydown', (e)=>{
@@ -1671,21 +1670,7 @@ document.addEventListener('keydown', (e)=>{
     healer1.start(e.keyCode);
     boostPlacer.start(e.keyCode);
     turretPlacer.start(e.keyCode);
-    if (e.keyCode == 78 && diem == false && millX == false){
-        millBuild = setInterval(()=>{
-            setTimeout(()=>{
-                place(millType, myPlayer.dir + toRad(0));
-                                place(millType, myPlayer.dir + toRad(100));
-        place(millType, myPlayer.dir - toRad(100));
-        },200);
-        },400);
-        millX = true;
-    } else {
-        if (e.keyCode == 78 && diem == false && millX == true) {
-            clearInterval(millBuild);
-            millX = false;
-        }
-    }
+    millPlacer.start(e.keyCode);
     if (e.keyCode == 13 && diem == false) {
         diem = true;
     } else {
@@ -1806,6 +1791,7 @@ document.addEventListener('keyup', (e)=>{
     boostPlacer.stop(e.keyCode);
     turretPlacer.stop(e.keyCode);
     healer1.stop(e.keyCode);
+    millPlacer.stop(e.keyCode);
 })
 
 
