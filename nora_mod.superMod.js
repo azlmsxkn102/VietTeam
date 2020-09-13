@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name       ʚ๖ۣۜNσɾα ๖ۣۜMσɗɞ‏
+// @name       ʚ๖ۣۜNσɾα ๖ۣۜBeta
 // @namespace    -
 // @version   v1.0
 // @description by Wibu in VietNam XD
@@ -14,6 +14,52 @@
 // @require https://cdn.jsdelivr.net/gh/emn178/js-sha3/build/sha3.min.js
 
 // ==/UserScript==
+var obj_1 = document.createElement("div");
+obj_1.id = "arrow_1";
+obj_1.style = "position:absolute; display:none; width:auto; height:auto; color:red; font-size: 20px;";
+obj_1.innerText = "Địch";
+var obj_2 = document.createElement("div");
+obj_2.id = "arrow_2";
+obj_2.style = "position:absolute; display:none; width:auto; height:auto; color:red; font-size: 20px;";
+obj_2.innerText = "Địch";
+document.body.appendChild(obj_1);
+document.body.appendChild(obj_2);
+
+setInterval(()=>{
+    if (myPlayer.x > enemyX) {
+document.getElementById("arrow_1").style.display = "block";
+        document.getElementById("arrow_1").style.left = "5%";
+                document.getElementById("arrow_1").style.top = "50%";
+        document.getElementById("arrow_1").style.right = "auto";
+    } else if (myPlayer.x < enemyX) {
+        document.getElementById("arrow_1").style.display = "block";
+        document.getElementById("arrow_1").style.left = "auto";
+                document.getElementById("arrow_1").style.top = "50%";
+        document.getElementById("arrow_1").style.right = "5%";
+    }
+
+    if (myPlayer.y > enemyY) {
+document.getElementById("arrow_2").style.display = "block";
+        document.getElementById("arrow_2").style.top = "5%";
+        document.getElementById("arrow_2").style.left = "50%";
+        document.getElementById("arrow_2").style.bottom = "auto";
+    } else if (myPlayer.y < enemyY) {
+        document.getElementById("arrow_2").style.display = "block";
+        document.getElementById("arrow_2").style.top = "auto";
+        document.getElementById("arrow_2").style.left = "50%";
+        document.getElementById("arrow_2").style.bottom = "25%";
+    }
+},0);
+
+setInterval(()=>{
+    enemyX = undefined;
+    enemyY = undefined;
+    document.getElementById("arrow_1").style.display = "none";
+    document.getElementById("arrow_2").style.display = "none";
+
+},5000);
+
+var xx,yy;
 let buildSpike;
 let crash_auto;
 var cr = false;
@@ -22,7 +68,36 @@ var soldier_insta = false;
 var emp_insta = false;
 var web = false;
 var instaChat = '';
+var xy_player = document.createElement("div");
+xy_player.style = "position:absolute; left:0; top:0; background-color:green; width:auto; height:auto;";
+xy_player.id = "xyPlayer";
+document.body.appendChild(xy_player);
+setInterval(()=>{
+    document.getElementById("xyPlayer").innerText = "X: " + myPlayer.x + ", Y: " + myPlayer.y;
+},0);
 
+var xy_enemy = document.createElement("div");
+xy_enemy.style = "position:absolute; left:0; top:2%; background-color:red; width:auto; height:auto;";
+xy_enemy.id = "xyEnemy";
+document.body.appendChild(xy_enemy);
+setInterval(()=>{
+    document.getElementById("xyEnemy").innerText = "X: " + enemyX + ", Y: " + enemyY;
+    if (enemyX !== xx | enemyY !== yy) {
+        document.getElementById("leaderboard").style = "color:red;"
+        document.getElementById("foodDisplay").style = "color:red;"
+        document.getElementById("woodDisplay").style = "color:red;"
+        document.getElementById("stoneDisplay").style = "color:red;"
+        document.getElementById("scoreDisplay").style = "color:red;"
+    } else {
+        document.getElementById("leaderboard").style = "color:white;"
+                document.getElementById("foodDisplay").style = "color:white;"
+        document.getElementById("woodDisplay").style = "color:white;"
+        document.getElementById("stoneDisplay").style = "color:white;"
+        document.getElementById("scoreDisplay").style = "color:white;"
+    }
+xx = enemyX;
+    yy = enemyY;
+},0);
 function crash() {
                     for (let i=0;i<4;i++){
             let angle = myPlayer.dir + toRad(i * 90);
@@ -1245,7 +1320,14 @@ function crash() {
             place(millType, angle)
         }
 }
+var mouseE = false;
 document.addEventListener("mousedown", (e)=>{
+    if (e.which == 1 && mouseE == true) {
+doNewSend(["13c", [0, 7, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+    doNewSend(["13c", [0, 18, 1]]);
+
+    }
     if (e.which == 2) {
         buildSpike = setInterval(()=>{
         place(spikeType);
@@ -1257,6 +1339,17 @@ document.addEventListener("mousedown", (e)=>{
     }
 }, false);
 document.addEventListener("mouseup", (e)=>{
+        if (e.which == 1 && mouseE == true) {
+if (myPlayer.y < 2400){
+                    hat(15);
+                } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+                    hat(31);
+                } else {
+                    hat(12);
+                }
+                acc(11);
+
+    }
     if (e.which == 3) {
         if (rcl == 0) {
         if (myPlayer.y < 2400){
@@ -1282,7 +1375,8 @@ document.addEventListener("mouseup", (e)=>{
 
 let mouseX;
 let mouseY;
-
+let enemyX;
+let enemyY;
 let width;
 let height;
 
@@ -1444,6 +1538,8 @@ function handleMessage(m){
                 myPlayer.isSkull = playerInfo[11];
             } else if(playerInfo[7] != myPlayer.clan || playerInfo[7] === null) {
                 enemiesNear.push(playerInfo);
+                enemyX = playerInfo[1];
+                enemyY = playerInfo[2];
             }
         }
     }
@@ -1561,22 +1657,35 @@ var repeater = function(key, action, interval) {
 
 
 }
-
-
+var millX = false;
 const healer1 = repeater(100, () => {place(foodType, boostDir);
                                     place(foodType, boostDir);
                                     place(foodType, boostDir)}, 50);
 const boostPlacer = repeater(97, () => {place(boostType)}, 0);
 const spikePlacer = repeater(86, () => {place(spikeType)}, 0);
-const millPlacer = repeater(78, () => {place(millType)}, 0);
+let millBuild;
 const turretPlacer = repeater(72, () => {place(turretType)}, 0);
 var diem = false;
 document.addEventListener('keydown', (e)=>{
     spikePlacer.start(e.keyCode);
     healer1.start(e.keyCode);
     boostPlacer.start(e.keyCode);
-    millPlacer.start(e.keyCode);
     turretPlacer.start(e.keyCode);
+    if (e.keyCode == 78 && diem == false && millX == false){
+        millBuild = setInterval(()=>{
+            setTimeout(()=>{
+                place(millType, myPlayer.dir + toRad(0));
+                                place(millType, myPlayer.dir + toRad(100));
+        place(millType, myPlayer.dir - toRad(100));
+        },200);
+        },400);
+        millX = true;
+    } else {
+        if (e.keyCode == 78 && diem == false && millX == true) {
+            clearInterval(millBuild);
+            millX = false;
+        }
+    }
     if (e.keyCode == 13 && diem == false) {
         diem = true;
     } else {
@@ -1608,11 +1717,9 @@ document.addEventListener('keydown', (e)=>{
             doNewSend(["13c", [0, 0, 1]]);
             if (soldier_insta == true) {
                 hat(6);
-                acc(11);
             }
             if (emp_insta == true) {
                 hat(22);
-                acc(11);
             }
             if (soldier_insta == false && emp_insta == false) {
                                 if (myPlayer.y < 2400){
@@ -1622,14 +1729,14 @@ document.addEventListener('keydown', (e)=>{
                 } else {
                     hat(12);
                 }
-                acc(11);
             }
             setTimeout (()=>{
+                acc(11);
                 doNewSend(["5", [secondary, true]]);
                 setTimeout(()=>{
                     doNewSend(["5", [primary, true]]);
                 },1700);
-            },1000);
+            },550);
             autoaim = null;
         }, instaSpeed);
     }
@@ -1697,7 +1804,6 @@ document.addEventListener('keydown', (e)=>{
 document.addEventListener('keyup', (e)=>{
     spikePlacer.stop(e.keyCode);
     boostPlacer.stop(e.keyCode);
-    millPlacer.stop(e.keyCode);
     turretPlacer.stop(e.keyCode);
     healer1.stop(e.keyCode);
 })
@@ -1803,12 +1909,21 @@ menu.innerHTML = `
 <input id="emp" type="checkBox" />&nbsp;<span>Tank Gear + Emp Helmet (right Click)</span><br />
 <input id="emp_insta" type="checkBox" />&nbsp;<span>Emp Helmet Insta</span><br />
 <input id="soldier_insta" type="checkBox" />&nbsp;<span>Soldier Insta</span><br />
+<input id="clickToBull" type="checkBox" />&nbsp;<span>Left Click To BullHelmet + BloodWings</span><br />
 <span style="color:white;">@made by: azlmsxkn #8685</span>
 `;
 document.body.appendChild(menu);
 document.getElementById("chatInsta").onkeyup = ()=>{
     var check = document.getElementById("chatInsta").value;
     instaChat = check;
+};
+document.getElementById("clickToBull").onclick = ()=>{
+    var check = document.getElementById("clickToBull");
+    if (check.checked == true) {
+        mouseE = true;
+    } else {
+        mouseE = false;
+    }
 };
 document.getElementById("emp_insta").onclick = ()=>{
     emp_insta = false;
@@ -2004,6 +2119,16 @@ background-color:red;
 .menuButton:hover {
 background-color:pink;
 }
+
+#gameCanvas {
+cursor: url("http://cur.cursors-4u.net/cursors/cur-2/cur116.cur"),progress;
+}
+
+#storeButton, #allianceButton, #chatButton, .actionBarItem, #mapDisplay {
+cursor: url("https://cur.cursors-4u.net/anime/ani-11/ani1030.cur"), auto !important;
+}
+
+
 `;
 document.body.appendChild(styles);
 var xd; xd = "https://cdn.discordapp.com/attachments/670777278699012136/724148849408606328/Ben_says_EZ_-_Sound_Effect_HD.mp3";
