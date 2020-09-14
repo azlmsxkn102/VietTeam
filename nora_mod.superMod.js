@@ -2106,15 +2106,6 @@ background-color:red;
 background-color:pink;
 }
 
-#gameCanvas {
-cursor: url("http://cur.cursors-4u.net/cursors/cur-2/cur116.cur"),progress;
-}
-
-#storeButton, #allianceButton, #chatButton, .actionBarItem, #mapDisplay {
-cursor: url("https://cur.cursors-4u.net/anime/ani-11/ani1030.cur"), auto !important;
-}
-
-
 `;
 document.body.appendChild(styles);
 var xd; xd = "https://cdn.discordapp.com/attachments/670777278699012136/724148849408606328/Ben_says_EZ_-_Sound_Effect_HD.mp3";
@@ -2135,3 +2126,58 @@ var xd; xd = "https://cdn.discordapp.com/attachments/670777278699012136/72414884
         }
         kills = count2;
     }
+
+
+
+
+
+
+
+
+function setCookie(cname,cvalue,exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires=" + d.toGMTString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+var name = getCookie("namePlayer");
+
+if (name != "") {
+    alert("Chào mừng Mày~ Quay trở lại : " + name + " !!");
+} else {
+    name = window.prompt("Nhập Tên Của Mày!!:");
+    if (name != "" && name != null) {
+        setCookie("namePlayer", name, 30);
+    }
+}
+var z_name_z = document.createElement("div");
+z_name_z.id = "namePlayer";
+z_name_z.style = "position:absolute; z-index:1000; width:auto; heigth:auto; top:10%; left:0; color:white; font-size:20px;";
+z_name_z.innerText = name;
+document.body.appendChild(z_name_z);
+
+setInterval(()=>{
+    setTimeout(()=>{
+        document.getElementById("namePlayer").style.color = "red";
+        setTimeout(()=>{
+            document.getElementById("namePlayer").style.color = "white";
+        }, 500);
+    }, 500);
+},1000);
