@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name       ʚ๖ۣۜNσɾα‏
+// @name       GOC
 // @namespace    -
-// @version   v1.0
-// @description by Wibu in VietNam XD
-// @author       Duong Thai Tan Dat
+// @version    2
+// @description NO
+// @author       VN
 // @match        *://sandbox.moomoo.io/*
 // @match        *://moomoo.io/*
 // @grant        none
@@ -15,24 +15,19 @@
 
 // ==/UserScript==
 
-document.addEventListener("mousedown", (e)=>{
-    if (e.which == 3) {
-        hat(40);
-        acc(19);
-    }
-}, false);
-document.addEventListener("mouseup", (e)=>{
-    if (e.which == 3) {
-        if (myPlayer.y < 2400){
-                    hat(15);
-                } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
-                    hat(31);
-                } else {
-                    hat(12);
-                }
-                acc(11);
-    }
-}, false);
+let hue = 0;
+
+let replaceInterval = setInterval(() => {
+if (CanvasRenderingContext2D.prototype.roundRect) {
+  CanvasRenderingContext2D.prototype.roundRect = ((oldFunc) => function() { if (this.fillStyle == "#8ecc51") this.fillStyle = `hsl(${hue}, 100%, 50%)`; return oldFunc.call(this, ...arguments); })(CanvasRenderingContext2D.prototype.roundRect);
+  clearInterval(replaceInterval);
+}}, 10);
+
+function changeHue() {
+  hue += Math.random() * 3;
+}
+
+setInterval(changeHue, 10);
 
 let mouseX;
 let mouseY;
@@ -41,8 +36,34 @@ let width;
 let height;
 
 setInterval(() => {
+   if(clanToggle == 1) {
+        doNewSend(["9", [null]]);
+        doNewSend(["8", [animate(false, 5)]])
+    }
+    doNewSend(["testing", [6]]);
+}, 200);
+
+setInterval(() => {
+    if(messageToggle == 1) {
+        doNewSend(["ch", [animate(true, 5)]])
+    }
+}, 200);
+
+setInterval(() => {
     if(autoaim == true) {
         doNewSend(["2", [nearestEnemyAngle]]);
+    }
+}, 0);
+
+setInterval(() => {
+    if(autoprimary == true) {
+        doNewSend(["5", [primary, true]]);
+    }
+}, 0);
+
+setInterval(() => {
+    if(autosecondary == true) {
+        doNewSend(["5", [secondary, true]]);
     }
 }, 0);
 
@@ -78,10 +99,8 @@ function aim(x, y){
 let coreURL = new URL(window.location.href);
 window.sessionStorage.force = coreURL.searchParams.get("fc");
 
-var instaSpeed = 235;
 var nearestEnemy;
 var nearestEnemyAngle;
-var cps = false;
 var isEnemyNear;
 var primary;
 var secondary;
@@ -125,12 +144,61 @@ var clanToggle = 0;
 let healToggle = 1;
 let hatToggle = 1;
 
+
+
 document.msgpack = msgpack;
 function n(){
      this.buffer = new Uint8Array([0]);
      this.buffer.__proto__ = new Uint8Array;
      this.type = 0;
 }
+
+const CanvasAPI = document.getElementById("gameCanvas")
+CanvasAPI.addEventListener("mousedown", buttonPressD, false);
+
+function buttonPressD(e) {
+    if (e.button == 2) {
+            doNewSend(["13c", [1, 40, 0]]);
+            doNewSend(["13c", [0, 40, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [1, 21, 1]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            doNewSend(["7", [1]]);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["13c", [0, 11, 1]]);
+            if (myPlayer.y < 2400){
+                doNewSend(["13c", [0, 15, 0]]);
+            } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+                doNewSend(["13c", [0, 31, 0]]);
+            } else {
+	            doNewSend(["13c", [0, 12, 0]]);
+            }
+        }, 120);
+    }
+    if (e.button == 0) {
+            doNewSend(["13c", [1, 7, 0]]);
+            doNewSend(["13c", [0, 7, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [1, 18, 1]]);
+            doNewSend(["13c", [0, 18, 1]]);
+            doNewSend(["7", [1]]);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 11, 1]]);
+            if (myPlayer.y < 2400){
+                doNewSend(["13c", [0, 15, 0]]);
+            } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+                doNewSend(["13c", [0, 31, 0]]);
+            } else {
+	            doNewSend(["13c", [0, 12, 0]]);
+            }
+            doNewSend(["7", [1]]);
+        }, 120);
+    }
+}
+
 WebSocket.prototype.oldSend = WebSocket.prototype.send;
 WebSocket.prototype.send = function(m){
     if (!ws){
@@ -269,6 +337,14 @@ function place(id, angle = Math.atan2(mouseY - height / 2, mouseX - width / 2)) 
     doNewSend(["5", [myPlayer.weapon, true]]);
 }
 
+function placeQ(id, angle = Math.atan2(mouseY - height / 2, mouseX - width / 2)) {
+    doNewSend(["5", [id, null]]);
+    doNewSend(["c", [1, boostDir]]);
+    doNewSend(["c", [0, boostDir]]);
+    doNewSend(["5", [myPlayer.weapon, true]]);
+    doNewSend(["2", [nearestEnemyAngle]]);
+}
+
 function boostSpike() {
     if(boostDir == null) {
         boostDir = nearestEnemyAngle;
@@ -311,82 +387,51 @@ var repeater = function(key, action, interval) {
 }
 
 
-const healer1 = repeater(100, () => {place(foodType, boostDir);
-                                    place(foodType, boostDir);
-                                    place(foodType, boostDir)}, 50);
+const healer1 = repeater(100, () => {placeQ(foodType, boostDir);
+                                    placeQ(foodType, boostDir);
+                                    placeQ(foodType, boostDir)}, 50);
+const healer2 = repeater(81, () => {placeQ(foodType, boostDir);
+                                    placeQ(foodType, boostDir);
+                                    placeQ(foodType, boostDir)}, 50);
 const boostPlacer = repeater(97, () => {place(boostType)}, 0);
+const fourSpawnpader = repeater(75, fourSpawnpad, 0);
 const spikePlacer = repeater(86, () => {place(spikeType)}, 0);
 const millPlacer = repeater(78, () => {place(millType)}, 0);
 const turretPlacer = repeater(72, () => {place(turretType)}, 0);
-var diem = false;
+
 document.addEventListener('keydown', (e)=>{
     spikePlacer.start(e.keyCode);
+    fourSpawnpader.start(e.keyCode);
     healer1.start(e.keyCode);
+    healer2.start(e.keyCode);
     boostPlacer.start(e.keyCode);
     millPlacer.start(e.keyCode);
     turretPlacer.start(e.keyCode);
-    if (e.keyCode == 13 && diem == false) {
-        diem = true;
-    } else {
-        if (e.keyCode == 13 && diem == true) {
-            diem = false;
-        }
-    }
-    if (e.keyCode == 96 && diem == false) {
-        autoaim = true;
-        doNewSend(["5", [primary, true]]);
-        doNewSend(["13c", [0, 7, 0]]);
-            doNewSend(["13c", [0, 0, 1]]);
-    doNewSend(["13c", [0, 18, 1]]);
-        doNewSend(["c", [1]]);
-
-       setTimeout(()=>{
-           doNewSend(["13c", [0, 53, 0]]);
-           doNewSend(["13c", [0, 0, 1]]);
-           doNewSend(["13c", [0, 19, 1]]);
-           doNewSend(["5", [secondary, true]]);
-       }, instaSpeed - 130);
-
-        setTimeout (()=>{
-            doNewSend(["5", [primary, true]]);
-            doNewSend(["c", [0, null]]);
-             doNewSend(["13c", [0, 0, 0]]);
-            doNewSend(["13c", [0, 0, 1]]);
-            doNewSend(["13c", [0, 0, 1]]);
-                if (myPlayer.y < 2400){
-                    hat(15);
-                } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
-                    hat(31);
-                } else {
-                    hat(12);
-                }
-                acc(11);
-            setTimeout (()=>{
-                doNewSend(["5", [secondary, true]]);
-                setTimeout(()=>{
-                    doNewSend(["5", [primary, true]]);
-                },2000);
-            },1000);
-            autoaim = null;
-        }, instaSpeed);
-    }
-    if (e.keyCode == 36 && diem == false) {
-        doNewSend(["6", [4]]);
-        doNewSend(["6", [15]]);
-    }
+//KeyCode event
 })
 
 document.addEventListener('keyup', (e)=>{
     spikePlacer.stop(e.keyCode);
+    fourSpawnpader.stop(e.keyCode);
     boostPlacer.stop(e.keyCode);
     millPlacer.stop(e.keyCode);
     turretPlacer.stop(e.keyCode);
     healer1.stop(e.keyCode);
+    healer2.stop(e.keyCode);
 })
 
 
 function isElementVisible(e) {
     return (e.offsetParent !== null);
+}
+
+function fourSpawnpad() {
+       place(spawnpadType, myPlayer.dir + toRad(135));
+       place(spawnpadType, myPlayer.dir + toRad(150));
+       place(spawnpadType, myPlayer.dir + toRad(165));
+       place(spawnpadType, myPlayer.dir + toRad(180));
+       place(spawnpadType, myPlayer.dir + toRad(270));
+       place(spawnpadType, myPlayer.dir + toRad(360));
 }
 
 function toRad(angle) {
@@ -464,3 +509,7 @@ function update() {
        }
    }
 }
+document.getElementById("adCard").style.display = "none";
+document.getElementById("promoImgHolder").style.display = "none";
+document.getElementById("moomooio_728x90_home").remove();
+    document.getElementById("pre-content-container").remove();
