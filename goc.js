@@ -152,53 +152,6 @@ function n(){
      this.buffer.__proto__ = new Uint8Array;
      this.type = 0;
 }
-
-const CanvasAPI = document.getElementById("gameCanvas")
-CanvasAPI.addEventListener("mousedown", buttonPressD, false);
-
-function buttonPressD(e) {
-    if (e.button == 2) {
-            doNewSend(["13c", [1, 40, 0]]);
-            doNewSend(["13c", [0, 40, 0]]);
-            doNewSend(["13c", [0, 0, 1]]);
-            doNewSend(["13c", [1, 21, 1]]);
-            doNewSend(["13c", [0, 21, 1]]);
-            doNewSend(["7", [1]]);
-        setTimeout( () => {
-            doNewSend(["13c", [0, 0, 0]]);
-            doNewSend(["7", [1]]);
-            doNewSend(["13c", [0, 11, 1]]);
-            if (myPlayer.y < 2400){
-                doNewSend(["13c", [0, 15, 0]]);
-            } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
-                doNewSend(["13c", [0, 31, 0]]);
-            } else {
-	            doNewSend(["13c", [0, 12, 0]]);
-            }
-        }, 120);
-    }
-    if (e.button == 0) {
-            doNewSend(["13c", [1, 7, 0]]);
-            doNewSend(["13c", [0, 7, 0]]);
-            doNewSend(["13c", [0, 0, 1]]);
-            doNewSend(["13c", [1, 18, 1]]);
-            doNewSend(["13c", [0, 18, 1]]);
-            doNewSend(["7", [1]]);
-        setTimeout( () => {
-            doNewSend(["13c", [0, 0, 0]]);
-            doNewSend(["13c", [0, 11, 1]]);
-            if (myPlayer.y < 2400){
-                doNewSend(["13c", [0, 15, 0]]);
-            } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
-                doNewSend(["13c", [0, 31, 0]]);
-            } else {
-	            doNewSend(["13c", [0, 12, 0]]);
-            }
-            doNewSend(["7", [1]]);
-        }, 120);
-    }
-}
-
 WebSocket.prototype.oldSend = WebSocket.prototype.send;
 WebSocket.prototype.send = function(m){
     if (!ws){
