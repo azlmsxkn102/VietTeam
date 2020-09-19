@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name       •๖ۣۜDαĭ๖ۣۜZσ ๖ۣۜM๖ۣۜOɗ•
+// @name       D⃟A⃟I⃟Z⃟O⃟ M⃟O⃟D⃟
 // @namespace    -
-// @version    1
+// @version    2
 // @description Private Hack
 // @author       azlmsxkn102 #8685
 // @match        *://sandbox.moomoo.io/*
@@ -12,7 +12,6 @@
 // @require https://code.jquery.com/ui/1.12.0/jquery-ui.min.js
 // @require https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js
 // @require https://cdn.jsdelivr.net/gh/emn178/js-sha3/build/sha3.min.js
-
 // ==/UserScript==
 
 
@@ -37091,10 +37090,10 @@ setTimeout(()=>{
                                         gameName2("•๖ۣۜDαĭ");
     gameName("red");
                                         setTimeout(()=>{
-                                                                 gameName2("•๖ۣۜDαĭ๖ۣۜZσ");
+                                                                 gameName2("ⒹⒶⒾⓏⓄ");
     gameName("yellow");
                                             setTimeout(()=>{
-                                                                     gameName2("•๖ۣۜDαĭ๖ۣۜZσ ๖ۣۜM๖ۣۜOɗ•");
+                                                                     gameName2("ⒹⒶⒾⓏⓄ ⓜⓄⒹ");
     gameName("green");
                                                 setInterval(()=>{
                                                     setTimeout(()=>{
@@ -37221,7 +37220,7 @@ function aim(x, y){
 let coreURL = new URL(window.location.href);
 window.sessionStorage.force = coreURL.searchParams.get("fc");
 
-var instaSpeed = 225;
+var instaSpeed = 230;
 var nearestEnemy;
 var nearestEnemyAngle;
 var isEnemyNear;
@@ -37477,6 +37476,7 @@ const fourSpawnpader = repeater(103, fourSpawnpad, 0);
 const spikePlacer = repeater(86, () => {place(spikeType)}, 0);
 const millPlacer = repeater(78, () => {place(millType)}, 0);
 const turretPlacer = repeater(72, () => {place(turretType)}, 0);
+const wallPlacer = repeater(76, () => {place(wallType)}, 0);
 
 document.addEventListener('keydown', (e)=>{
     spikePlacer.start(e.keyCode);
@@ -37486,6 +37486,7 @@ document.addEventListener('keydown', (e)=>{
     boostPlacer.start(e.keyCode);
     millPlacer.start(e.keyCode);
     turretPlacer.start(e.keyCode);
+    wallPlacer.start(e.keyCode);
 //KeyCode event
     if (e.keyCode == 13 && enter == false) {
         enter = true;
@@ -37592,6 +37593,7 @@ document.addEventListener('keyup', (e)=>{
     turretPlacer.stop(e.keyCode);
     healer1.stop(e.keyCode);
     healer2.stop(e.keyCode);
+    wallPlacer.stop(e.keyCode);
 })
 
 
@@ -37762,6 +37764,7 @@ document.getElementById("moomooio_728x90_home").remove();
     document.getElementById("pre-content-container").remove();
     document.getElementById("chatButton").style.display = "none";
 document.getElementById("youtuberOf").remove();
+document.getElementById("ageBarContainer").remove();
 var at1 = false;
 document.addEventListener("mousedown", (e)=>{
     if (e.which == 1) {
@@ -37822,12 +37825,15 @@ document.getElementById("key2").onkeyup = (e)=>{
 var menu = document.createElement("div");
 menu.id = "daizo_menu";
 menu.innerHTML = `
-<div id="ttName">DaiZo Mod V1</div>
+<div id="ttName">DaiZo Mod V2</div>
 <div  id="music1" style="display:none;">
 <input id="hetthuongcannho" type="checkBox" /><span>Hết Thương Cạn Nhớ</span>
 </div>
 <div  id="music2" style="display:none;">
-<input id="caooc20" type="checkBox" /><span>Cao Ốc 20</span>
+<input id="hongnhan" type="checkBox" /><span>Hồng Nhan - Masew</span>
+</div>
+<div  id="music3" style="display:none;">
+<input id="tutam" type="checkBox" /><span>Tự Tâm - TKT</span>
 </div>
 <div  id="click" style="display:none;">
 <input id="leftClick" type="checkBox" /><span>Left Click - Attack with Spike</span>
@@ -37838,36 +37844,55 @@ document.getElementById("daizo_menu").onmousemove = ()=>{
     document.getElementById("ttName").style = "transform: rotate(0);";
     document.getElementById("music1").style.display = "block";
     document.getElementById("music2").style.display = "block";
+    document.getElementById("music3").style.display = "block";
     document.getElementById("click").style.display = "block";
 };
 document.getElementById("daizo_menu").onmouseout = ()=>{
     document.getElementById("ttName").style = "transform: rotate(90deg);";
     document.getElementById("music1").style.display = "none";
     document.getElementById("music2").style.display = "none";
+    document.getElementById("music3").style.display = "none";
     document.getElementById("click").style.display = "none";
 };
 
 //Music
 var music1 = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/756116045923876895/y2mate.com_-_Het_Thuong_Can_Nho_Freak_D_Remix_-_uc_Phuc_Nhac_Tre_EDM_TikTok_Gay_Nghien_2019_Uza4M6eQ.mp3");
-var music2 = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/756118625311653939/cao_oc_20_b_ray_x_datg_ft_masew_x_k_icm_mv_official_Zf1hBnMByoK-gucZl1Rr.mp3");
+var music2 = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/756770917262032976/y2mate.com_-_Jack_-_Hong_Nhan__Masew_Remix__tzuY_MMuAN4.mp3");
+var music3 = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/756775791563636776/y2mate.com_-_TU_TAM_-_Nguyen_Tran_Trung_Quan__TKT_Remix__Nhac_Gay_Nghien_Hay_Nhat_2020_t6oP3rccvHk.mp3");
 document.getElementById("hetthuongcannho").onclick = ()=>{
     var check = document.getElementById("hetthuongcannho");
-    document.getElementById("caooc20").checked = false;
+    document.getElementById("hongnhan").checked = false;
+    document.getElementById("tutam").checked = false;
     music2.pause();
+    music3.pause();
     if (check.checked == true){
         music1.play();
     } else {
         music1.pause();
     }
 };
-document.getElementById("caooc20").onclick = ()=>{
-    var check = document.getElementById("caooc20");
+document.getElementById("hongnhan").onclick = ()=>{
+    var check = document.getElementById("hongnhan");
     document.getElementById("hetthuongcannho").checked = false;
+    document.getElementById("tutam").checked = false;
     music1.pause();
+    music3.pause();
         if (check.checked == true){
         music2.play();
     } else {
         music2.pause();
+    }
+};
+document.getElementById("tutam").onclick = ()=>{
+    var check = document.getElementById("tutam");
+    document.getElementById("hongnhan").checked = false;
+    document.getElementById("hetthuongcannho").checked = false;
+    music2.pause();
+    music1.pause();
+    if (check.checked == true){
+        music3.play();
+    } else {
+        music3.pause();
     }
 };
 document.getElementById("leftClick").onclick = ()=>{
