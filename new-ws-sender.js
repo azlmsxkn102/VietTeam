@@ -31,21 +31,6 @@ let mouseY;
 
 let width;
 let height;
-
-setInterval(() => {
-   if(clanToggle == 1) {
-        doNewSend(["9", [null]]);
-        doNewSend(["8", [animate(false, 5)]])
-    }
-    doNewSend(["testing", [6]]);
-}, 200);
-
-setInterval(() => {
-    if(messageToggle == 1) {
-        doNewSend(["ch", [animate(true, 5)]])
-    }
-}, 200);
-
 setInterval(() => {
     if(autoaim == true) {
         doNewSend(["2", [nearestEnemyAngle]]);
@@ -252,19 +237,35 @@ function handleMessage(m){
     }
 
    if(item == "h" && data[1] == myPlayer.id) {
-       if(data[2] < 100 && data[2] > 0 && healToggle == 1) {
-           setTimeout( () => {
+       if (data[2] < 16 && data[2] > 0) {
+           place(foodType, null);
+       }
+       if (data[2] < 94 && data[2] > 0) {
+           setTimeout(()=>{
                place(foodType, null);
                place(foodType, null);
                place(foodType, null);
                place(foodType, null);
-           }, healSpeed);
-
+               place(foodType, null);
+           }, 140 - delay);
        }
    }
    update();
 }
-
+var pingms = 0;
+var delay = 0;
+setInterval(()=>{
+    var getPing = document.getElementById("pingDisplay").innerText;
+    var text1 = getPing.replace("Ping:", "");
+    var text2 = text1.replace("ms", "");
+    pingms = parseInt(text2);
+    if (pingms < 140) {
+        delay = pingms;
+    } else {
+        delay = 0;
+    }
+    console.log(140 - delay);
+}, 500);
 
 function doNewSend(sender){
     ws.send(new Uint8Array(Array.from(msgpack5.encode(sender))));
