@@ -8608,14 +8608,14 @@ document.addEventListener("keydown", (e)=>{
     divmusic.id = "menu_music_enderyuuki";
     divmusic.style = "text-align:center; position:absolute; z-index:99999999; width:50%; height:auto; left:25%; top:10%; background-color:#333333; color:red; display:none; border-style:solid; border-radius:10px;";
     divmusic.innerHTML = `
-    <b>Lofi Music by EnderYuuki - She's from VietNam =D</b><br />
-    <span style="color:white; font-size:18px; font-family:Arial; margin:5px;" id="music1">Chẳng thể tìm được em!</span> <br />
-    <span style="color:white; font-size:18px; font-family:Arial; margin:5px;" id="music2">Nàng thơ :333</span> <br />
-    <span style="color:white; font-size:18px; font-family:Arial; margin:5px;" id="music3">Hẹn yêu Moe =D</span> <br />
-    <span style="color:white; font-size:18px; font-family:Arial; margin:5px;" id="music4">Anh mất em :< </span> <br />
-    <span style="color:white; font-size:18px; font-family:Arial; margin:5px;" id="music5">Chuyện rằng ~~</span> <br />
-    <span style="color:white; font-size:18px; font-family:Arial; margin:5px;" id="music6">Chỉ muốn bên em lúc này ~3~</span> <br />
-    <span style="color:white; font-size:18px; font-family:Arial; margin:5px;" id="music7">Hồng nhan (Best)</span> <br />
+    <b>Lofi Music by EnderYuuki - She's from VietNam =D</b><br></br>
+    <span style="color:white; font-size:18px; font-family:Arial; margin:5px;" id="music1">Chẳng thể tìm được em!</span> <br></br>
+    <span style="color:white; font-size:18px; font-family:Arial; margin:5px;" id="music2">Nàng thơ :333</span> <br></br>
+    <span style="color:white; font-size:18px; font-family:Arial; margin:5px;" id="music3">Hẹn yêu Moe =D</span> <br></br>
+    <span style="color:white; font-size:18px; font-family:Arial; margin:5px;" id="music4">Kẹo bông gòn</span> <br></br>
+    <span style="color:white; font-size:18px; font-family:Arial; margin:5px;" id="music5">Tướng quân</span> <br></br>
+    <span style="color:white; font-size:18px; font-family:Arial; margin:5px;" id="music6">Chỉ muốn bên em lúc này ~3~</span> <br></br>
+    <span style="color:white; font-size:18px; font-family:Arial; margin:5px;" id="music7">Hồng nhan (Best)</span> <br></br>
     `;
     document.body.appendChild(divmusic);
     setInterval(()=>{
@@ -8637,10 +8637,11 @@ document.addEventListener("keydown", (e)=>{
         document.getElementById("music1").onclick = ()=>{
     nangtho.pause();
     henyeu.pause();
-    anhmatem.pause();
-    chuyenrang.pause();
+    keobonggon.pause();
+    tuongquan.pause();
     chimuonbenemlucnay.pause();
     hongnhan.pause();
+    keobonggon.pause();
         changthetimduocem.currentTime = 0;
         changthetimduocem.play();
     };
@@ -8655,10 +8656,11 @@ document.addEventListener("keydown", (e)=>{
             document.getElementById("music2").onclick = ()=>{
     changthetimduocem.pause();
     henyeu.pause();
-    anhmatem.pause();
-    chuyenrang.pause();
+    keobonggon.pause();
+    tuongquan.pause();
     chimuonbenemlucnay.pause();
     hongnhan.pause();
+    keobonggon.pause();
         nangtho.currentTime = 0;
         nangtho.play();
     };
@@ -8673,9 +8675,10 @@ document.addEventListener("keydown", (e)=>{
     document.getElementById("music3").onclick = ()=>{
     changthetimduocem.pause();
     nangtho.pause();
-    anhmatem.pause();
-    chuyenrang.pause();
+    keobonggon.pause();
+    tuongquan.pause();
     chimuonbenemlucnay.pause();
+    keobonggon.pause();
     hongnhan.pause();
         henyeu.currentTime = 0;
         henyeu.play();
@@ -8692,11 +8695,12 @@ document.addEventListener("keydown", (e)=>{
     changthetimduocem.pause();
     nangtho.pause();
     henyeu.pause();
-    chuyenrang.pause();
+    tuongquan.pause();
     chimuonbenemlucnay.pause();
     hongnhan.pause();
-        anhmatem.currentTime = 0;
-        anhmatem.play();
+    keobonggon.pause();
+        keobonggon.currentTime = 0;
+        keobonggon.play();
     };
     document.getElementById("music4").onmousemove = ()=>{
         document.getElementById("music4").style.color = "red";
@@ -8710,11 +8714,12 @@ document.addEventListener("keydown", (e)=>{
     changthetimduocem.pause();
     nangtho.pause();
     henyeu.pause();
-    anhmatem.pause();
+    keobonggon.pause();
     chimuonbenemlucnay.pause();
     hongnhan.pause();
-        chuyenrang.currentTime = 0;
-        chuyenrang.play();
+    keobonggon.pause();
+        tuongquan.currentTime = 0;
+        tuongquan.play();
     };
     document.getElementById("music5").onmousemove = ()=>{
         document.getElementById("music5").style.color = "red";
@@ -8726,9 +8731,10 @@ document.getElementById("music6").onclick = ()=>{
     changthetimduocem.pause();
     nangtho.pause();
     henyeu.pause();
-    anhmatem.pause();
-    chuyenrang.pause();
+    keobonggon.pause();
+    tuongquan.pause();
     hongnhan.pause();
+    keobonggon.pause();
         chimuonbenemlucnay.currentTime = 0;
         chimuonbenemlucnay.play();
     };
@@ -8742,8 +8748,9 @@ document.getElementById("music7").onclick = ()=>{
     changthetimduocem.pause();
     nangtho.pause();
     henyeu.pause();
-    anhmatem.pause();
-    chuyenrang.pause();
+    keobonggon.pause();
+    tuongquan.pause();
+    chimuonbenemlucnay.pause();
         hongnhan.currentTime = 0;
         hongnhan.play();
     };
@@ -8756,8 +8763,8 @@ document.getElementById("music7").onclick = ()=>{
 var changthetimduocem = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/830032343610687538/y2mate.com_-_Chang_The_Tim_uoc_Em_PhucXp_ft_Freak_D_Audio_Official.mp3");
 var nangtho = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/830032684277301248/y2mate.com_-_Nang_Tho_Lofi_Ver_Hoang_Dung_x_Freak_D.mp3");
 var henyeu = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/830032711497941053/y2mate.com_-_Hen_Yeu_Lofi_Ver_Duy_Zuno_x_CaoTri_Nhac_Lofi_Chill_2020.mp3");
-var anhmatem = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/830032733350133771/y2mate.com_-_anh_Mat_Em_Lofi_Ver_Quang_ang_Tran_x_Freak_D.mp3");
-var chuyenrang = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/830032754766250014/y2mate.com_-_Chuyen_Rang_Lofi_Ver_Thinh_Suy_x_Freak_D.mp3");
 var chimuonbenemlucnay = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/830462081747910656/y2mate.com_-_Chi_Muon_Ben_Em_Luc_Nay_Freak_D_Lofi_Ver_Jiki_X_ft_Huy_Vac.mp3");
 var hongnhan = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/830465474134933505/y2mate.com_-_Hong_Nhan_Lofi_Ver_Jack_x_Kprox.mp3");
+var keobonggon = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/829913344051642408/y2mate.com_-_KEO_BONG_GON_H2K_x_Trunky_Dino_Lofi_Mix_Nhac_Lofi_Buon_Hay_Nhat_Lofi_Gay_Nghien_Tam_Tra.mp3");
+var tuongquan = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/830507168364494908/y2mate.com_-_Lyrics_Tuong_quan_Lofi_ver_ruou_sau_nang_ly_suot_em.mp3");
 //add by EnderYuuki, best friend is EnderThreePro!
