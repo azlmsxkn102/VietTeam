@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       New WS SENDER
 // @namespace    -
-// @version    1.0
+// @version    2.0
 // @description NO
 // @author       VN
 // @match        *://sandbox.moomoo.io/*
@@ -34,6 +34,9 @@ let height;
 setInterval(() => {
     if(autoaim == true) {
         doNewSend(["2", [nearestEnemyAngle]]);
+        setInterval(()=>{
+            doNewSend(["2", [nearestEnemyAngle]]);
+        }, 5);
     }
 }, 0);
 
@@ -235,8 +238,12 @@ function handleMessage(m){
     if (!nearestEnemy) {
         nearestEnemyAngle = myPlayer.dir;
     }
-
    if(item == "h" && data[1] == myPlayer.id) {
+       if (data[2] == 50) {
+           if(lastHealth == 25 && enemiesNear){
+                                    place(foodType, null);
+                                };
+       }
        if (data[2] < 16 && data[2] > 0) {
            place(foodType, null);
        }
@@ -249,9 +256,16 @@ function handleMessage(m){
                place(foodType, null);
            }, 140 - delay);
        }
+       if (data[2] < 100 && data[2] > 94){
+           setTimeout(()=>{
+               place(foodType, null);
+           }, 300 - delay);
+       }
+       lastHealth = data[2];
    }
    update();
 }
+var lastHealth = 0;
 var pingms = 0;
 var delay = 0;
 setInterval(()=>{
@@ -464,3 +478,131 @@ document.getElementById("adCard").style.display = "none";
 document.getElementById("promoImgHolder").style.display = "none";
 document.getElementById("moomooio_728x90_home").remove();
     document.getElementById("pre-content-container").remove();
+
+//rewrite more by EnDeRYuuki
+var i,x;
+var menumsc = false;
+var randomi = 0;
+document.addEventListener("keydown", (e)=>{
+    if (e.keyCode == 113) {
+        e.preventDefault();
+        if (!menumsc){
+        document.getElementById("menu_music_enderyuuki").style.display = "block";
+            menumsc = true;
+        } else {
+        document.getElementById("menu_music_enderyuuki").style.display = "none";
+        menumsc = false;
+        }
+    }
+}, false);
+    var divmusic = document.createElement("div");
+    divmusic.id = "menu_music_enderyuuki";
+    divmusic.style = "text-align:center; position:absolute; z-index:99999999; width:50%; height:auto; left:25%; top:10%; background-color:#333333; color:red; display:none; border-style:solid; border-radius:10px;";
+    divmusic.innerHTML = `
+    <b>Lofi Music by EnderYuuki - She's from VietNam =D</b><br />
+    <span style="color:white; font-size:18px; font-family:Arial; margin:5px;" id="music1">Chẳng thể tìm được em!</span> <br />
+    <span style="color:white; font-size:18px; font-family:Arial; margin:5px;" id="music2">Nàng thơ :333</span> <br />
+    <span style="color:white; font-size:18px; font-family:Arial; margin:5px;" id="music3">Hẹn yêu Moe =D</span> <br />
+    <span style="color:white; font-size:18px; font-family:Arial; margin:5px;" id="music4">Anh mất em D: SaD</span> <br />
+    <span style="color:white; font-size:18px; font-family:Arial; margin:5px;" id="music5">Chuyện rằng ~~</span> <br />
+    `;
+    document.body.appendChild(divmusic);
+    setInterval(()=>{
+        if (menumsc){
+            switch (randomi) {
+                case 0:
+                    document.getElementById("menu_music_enderyuuki").style.color = "red"
+                    randomi++;
+                    break;
+                case 1:
+                    document.getElementById("menu_music_enderyuuki").style.color = "green";
+                    randomi++;
+                    break;
+            }
+            if (randomi == 2) {randomi = 0;}
+        }
+    }, 200);
+    //event for this menu
+        document.getElementById("music1").onclick = ()=>{
+    nangtho.pause();
+    henyeu.pause();
+    anhmatem.pause();
+    chuyenrang.pause();
+        changthetimduocem.currentTime = 0;
+        changthetimduocem.play();
+    };
+    document.getElementById("music1").onmousemove = ()=>{
+        document.getElementById("music1").style.color = "red";
+    };
+    document.getElementById("music1").onmouseout = ()=>{
+        document.getElementById("music1").style.color = "white";
+    };
+
+
+            document.getElementById("music2").onclick = ()=>{
+    changthetimduocem.pause();
+    henyeu.pause();
+    anhmatem.pause();
+    chuyenrang.pause();
+        nangtho.currentTime = 0;
+        nangtho.play();
+    };
+    document.getElementById("music2").onmousemove = ()=>{
+        document.getElementById("music2").style.color = "red";
+    };
+    document.getElementById("music2").onmouseout = ()=>{
+        document.getElementById("music2").style.color = "white";
+    };
+
+
+    document.getElementById("music3").onclick = ()=>{
+    changthetimduocem.pause();
+    nangtho.pause();
+    anhmatem.pause();
+    chuyenrang.pause();
+        henyeu.currentTime = 0;
+        henyeu.play();
+    };
+    document.getElementById("music3").onmousemove = ()=>{
+        document.getElementById("music3").style.color = "red";
+    };
+    document.getElementById("music3").onmouseout = ()=>{
+        document.getElementById("music3").style.color = "white";
+    };
+
+
+    document.getElementById("music4").onclick = ()=>{
+    changthetimduocem.pause();
+    nangtho.pause();
+    henyeu.pause();
+    chuyenrang.pause();
+        anhmatem.currentTime = 0;
+        anhmatem.play();
+    };
+    document.getElementById("music4").onmousemove = ()=>{
+        document.getElementById("music4").style.color = "red";
+    };
+    document.getElementById("music4").onmouseout = ()=>{
+        document.getElementById("music4").style.color = "white";
+    };
+
+
+    document.getElementById("music5").onclick = ()=>{
+    changthetimduocem.pause();
+    nangtho.pause();
+    henyeu.pause();
+    anhmatem.pause();
+        chuyenrang.currentTime = 0;
+        chuyenrang.play();
+    };
+    document.getElementById("music5").onmousemove = ()=>{
+        document.getElementById("music5").style.color = "red";
+    };
+    document.getElementById("music5").onmouseout = ()=>{
+        document.getElementById("music5").style.color = "white";
+    };
+var changthetimduocem = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/830032343610687538/y2mate.com_-_Chang_The_Tim_uoc_Em_PhucXp_ft_Freak_D_Audio_Official.mp3");
+var nangtho = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/830032684277301248/y2mate.com_-_Nang_Tho_Lofi_Ver_Hoang_Dung_x_Freak_D.mp3");
+var henyeu = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/830032711497941053/y2mate.com_-_Hen_Yeu_Lofi_Ver_Duy_Zuno_x_CaoTri_Nhac_Lofi_Chill_2020.mp3");
+var anhmatem = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/830032733350133771/y2mate.com_-_anh_Mat_Em_Lofi_Ver_Quang_ang_Tran_x_Freak_D.mp3");
+var chuyenrang = new Audio("https://cdn.discordapp.com/attachments/745662811828387960/830032754766250014/y2mate.com_-_Chuyen_Rang_Lofi_Ver_Thinh_Suy_x_Freak_D.mp3");
