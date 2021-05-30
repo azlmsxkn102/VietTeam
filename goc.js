@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name       GOC
 // @namespace    -
-// @version    2
+// @version    3
 // @description NO
 // @author       VN
 // @match        *://sandbox.moomoo.io/*
 // @match        *://moomoo.io/*
 // @grant        none
-// @require https://greasyfork.org/scripts/368273-msgpack/code/msgpack.js?version=598723
+// @require https://raw.githubusercontent.com/azlmsxkn102/VietTeam/master/msgpack.js
 // @require http://code.jquery.com/jquery-3.3.1.min.js
 // @require https://code.jquery.com/ui/1.12.0/jquery-ui.min.js
 // @require https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js
@@ -15,40 +15,79 @@
 
 // ==/UserScript==
 
-let hue = 0;
+(function() {
+    var Mill1;
+    var Mill2;
+    var Mill3;
+    var MillMod = true;
+document.addEventListener('keydown', function(e) {
+        if (e.keyCode == 78 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        AutoMill = (AutoMill + 1) % 2;
+                e.preventDefault();
+                if (MillMod) {
+                    Mill1 = setTimeout(function() {
+                        h1();
+                    }, 0);
+                } else {
+                    clearTimeout(Mill1);
+                    clearTimeout(Mill2);
+                    clearTimeout(Mill3);
+                                    }
+                MillMod = !MillMod;
+            }
+        }
+    );
 
-let replaceInterval = setInterval(() => {
-if (CanvasRenderingContext2D.prototype.roundRect) {
-  CanvasRenderingContext2D.prototype.roundRect = ((oldFunc) => function() { if (this.fillStyle == "#8ecc51") this.fillStyle = `hsl(${hue}, 100%, 50%)`; return oldFunc.call(this, ...arguments); })(CanvasRenderingContext2D.prototype.roundRect);
-  clearInterval(replaceInterval);
-}}, 10);
 
-function changeHue() {
-  hue += Math.random() * 3;
-}
 
-setInterval(changeHue, 10);
+    function h1() {
+        clearTimeout(Mill1);
+        place(millType, toRad(0) + Math.atan2(mouseY - height / 2, mouseX - width / 2));
+        place(millType, toRad(75) + Math.atan2(mouseY - height / 2, mouseX - width / 2));
+        place(millType, toRad(-75) + Math.atan2(mouseY - height / 2, mouseX - width / 2));
+        Mill1 = setTimeout(function() {
+            h1();
+        }, 100);
+    }
+    function h2() {
+        clearTimeout(Mill2);
+        place(millType, toRad(0) + Math.atan2(mouseY - height / 2, mouseX - width / 2));
+        Mill1 = setTimeout(function() {
+            h2();
+        }, 100);
+    }
+        function h3() {
+        clearTimeout(Mill3);
+        place(millType, toRad(0) + Math.atan2(mouseY - height / 2, mouseX - width / 2));
+        Mill1 = setTimeout(function() {
+            h3();
+        }, 100);
+    }
+})();
 
+document.getElementById("gameCanvas").addEventListener("mousedown", (e)=>{hit = true;}, false);
+document.getElementById("gameCanvas").addEventListener("mouseup", (e)=>{hit = false; doNewSend(["c", [0]]); }, false);
 let mouseX;
 let mouseY;
 
 let width;
 let height;
-
-setInterval(() => {
-   if(clanToggle == 1) {
-        doNewSend(["9", [null]]);
-        doNewSend(["8", [animate(false, 5)]])
+let hit = false;
+setInterval(()=>{
+    if (hit){
+        doNewSend(["c", [1]]);
     }
-    doNewSend(["testing", [6]]);
-}, 200);
-
-setInterval(() => {
-    if(messageToggle == 1) {
-        doNewSend(["ch", [animate(true, 5)]])
+}, 0);
+setInterval(()=>{
+    if (antiInterval){
+        place(foodType, null);
     }
-}, 200);
-
+}, 0);
+setInterval(()=>{
+    if (isEnemyNear){
+        place(foodType, null);
+    }
+}, 300);
 setInterval(() => {
     if(autoaim == true) {
         doNewSend(["2", [nearestEnemyAngle]]);
@@ -99,6 +138,7 @@ function aim(x, y){
 let coreURL = new URL(window.location.href);
 window.sessionStorage.force = coreURL.searchParams.get("fc");
 
+var AutoMill = 0;
 var nearestEnemy;
 var nearestEnemyAngle;
 var isEnemyNear;
@@ -138,12 +178,8 @@ let myPlayer = {
     isSkull: null
 };
 
-let healSpeed = 60;
-var messageToggle = 0;
-var clanToggle = 0;
-let healToggle = 1;
 let hatToggle = 1;
-
+let antiInterval = false;
 
 
 document.msgpack = msgpack;
@@ -230,14 +266,10 @@ function handleMessage(m){
 
     if(nearestEnemy) {
         nearestEnemyAngle = Math.atan2(nearestEnemy[2]-myPlayer.y, nearestEnemy[1]-myPlayer.x);
-        if(Math.sqrt(Math.pow((myPlayer.y-nearestEnemy[2]), 2) + Math.pow((myPlayer.x-nearestEnemy[1]), 2)) < 0) {
+        if(Math.sqrt(Math.pow((myPlayer.y-nearestEnemy[2]), 2) + Math.pow((myPlayer.x-nearestEnemy[1]), 2)) < 300) {
             isEnemyNear = true;
-            if(autoaim == false && myPlayer.hat != 7 && myPlayer.hat != 53) {
-                normalHat = 6;
-                if(primary != 8) {
-                    normalAcc = 19
-                }
-            };
+            normalHat = 6;
+            normalAcc = 21;
         }
     }
     if(isEnemyNear == false && autoaim == false) {
@@ -255,14 +287,22 @@ function handleMessage(m){
     }
 
    if(item == "h" && data[1] == myPlayer.id) {
-       if(data[2] < 100 && data[2] > 0 && healToggle == 1) {
-           setTimeout( () => {
+       if (data[2] == 100){
+           antiInterval = false;
+       }
+       if (data[2] < 60 && data[2] > 0){
+           antiInterval = true;
+           place(foodType, null);
+           place(foodType, null);
+           setTimeout(()=>{
+           place(foodType, null);
+           place(foodType, null);
+           }, -10);
+       }
+       if (data[2] < 100 && data[2] > 0){
+           setTimeout(()=>{
                place(foodType, null);
-               place(foodType, null);
-               place(foodType, null);
-               place(foodType, null);
-           }, healSpeed);
-
+           }, 80);
        }
    }
    update();
@@ -349,7 +389,6 @@ const healer2 = repeater(81, () => {placeQ(foodType, boostDir);
 const boostPlacer = repeater(97, () => {place(boostType)}, 0);
 const fourSpawnpader = repeater(75, fourSpawnpad, 0);
 const spikePlacer = repeater(86, () => {place(spikeType)}, 0);
-const millPlacer = repeater(78, () => {place(millType)}, 0);
 const turretPlacer = repeater(72, () => {place(turretType)}, 0);
 
 document.addEventListener('keydown', (e)=>{
@@ -358,16 +397,56 @@ document.addEventListener('keydown', (e)=>{
     healer1.start(e.keyCode);
     healer2.start(e.keyCode);
     boostPlacer.start(e.keyCode);
-    millPlacer.start(e.keyCode);
     turretPlacer.start(e.keyCode);
 //KeyCode event
+    if (e.keyCode == 100 && document.activeElement.id.toLowerCase() != "chatbox"){
+        autosecondary = true;
+        setTimeout(()=>{
+            autosecondary = false;
+            autoprimary = true;
+            setTimeout(()=>{
+                autoprimary = false;
+            }, 300);
+        }, 1600);
+    }
+    if (e.keyCode == 96 && document.activeElement.id.toLowerCase() != "chatbox"){
+        autoaim = true;
+        autoprimary = true;
+        hit = true;
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [1, 7, 0]]);
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [1, 21, 1]]);
+        doNewSend(["13c", [0, 21, 1]]);
+        doNewSend(["c", [1]]);
+
+        setTimeout(()=>{
+            autoprimary = false;
+            autosecondary = true;
+            doNewSend(["13c", [1, 53, 0]]);
+            doNewSend(["13c", [0, 53, 0]]);
+            doNewSend(["5", [secondary, true]]);
+        }, 150);
+
+        setTimeout(()=>{
+            hit = false;
+            autosecondary = false;
+            doNewSend(["c", [1]]);
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [1, 6, 0]]);
+            doNewSend(["13c", [0, 6, 0]]);
+            doNewSend(["13c", [1, 11, 1]]);
+            doNewSend(["13c", [0, 11, 1]]);
+            autoaim = false;
+        }, 220);
+    }
 })
 
 document.addEventListener('keyup', (e)=>{
     spikePlacer.stop(e.keyCode);
     fourSpawnpader.stop(e.keyCode);
     boostPlacer.stop(e.keyCode);
-    millPlacer.stop(e.keyCode);
     turretPlacer.stop(e.keyCode);
     healer1.stop(e.keyCode);
     healer2.stop(e.keyCode);
@@ -465,4 +544,4 @@ function update() {
 document.getElementById("adCard").style.display = "none";
 document.getElementById("promoImgHolder").style.display = "none";
 document.getElementById("moomooio_728x90_home").remove();
-    document.getElementById("pre-content-container").remove();
+document.getElementById("pre-content-container").remove();
