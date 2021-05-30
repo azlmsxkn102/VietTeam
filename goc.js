@@ -412,13 +412,12 @@ document.addEventListener('keydown', (e)=>{
     if (e.keyCode == 96 && document.activeElement.id.toLowerCase() != "chatbox"){
         autoaim = true;
         autoprimary = true;
-        hit = true;
         doNewSend(["13c", [0, 0, 1]]);
         doNewSend(["13c", [1, 7, 0]]);
         doNewSend(["13c", [0, 7, 0]]);
         doNewSend(["13c", [1, 21, 1]]);
         doNewSend(["13c", [0, 21, 1]]);
-        doNewSend(["c", [1]]);
+        doNewSend(["7", [1]]);
 
         setTimeout(()=>{
             autoprimary = false;
@@ -429,9 +428,8 @@ document.addEventListener('keydown', (e)=>{
         }, 150);
 
         setTimeout(()=>{
-            hit = false;
             autosecondary = false;
-            doNewSend(["c", [1]]);
+            doNewSend(["7", [1]]);
             doNewSend(["5", [primary, true]]);
             doNewSend(["13c", [0, 0, 0]]);
             doNewSend(["13c", [1, 6, 0]]);
